@@ -8,3 +8,6 @@
 But do be careful to avoid the incoming obstacles and do not forget to collect the fuel tokens for extra time!! <br>
 Players can login to save their scores and see their previous scores, personal high score and their position in the global leaderboard.
 </h4>
+
+# Draft Image
+![alt text](https://github.com/F28WP-Dubai-nibbleByte/F28WP-project/blob/master/PROJECT-1.jpg?raw=true)
