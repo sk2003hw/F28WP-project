@@ -6,11 +6,10 @@
 
 $(document).ready(function(){ 
     
-    //CANVAS SELECTOR FEATURE
  var canvas = $('#myCanvas');
 
-   //ON LOADING - The div will be of color black and will prompt user to begin game.
- canvas.css('background-color', 'black');
+   //ON LOADING - The div will be of color blue 
+ canvas.css('background-color', 'blue');
 
    //The 'Begin Game' text will grow on hover and the user clicks to begin the game.
  $('#begin').hover(
