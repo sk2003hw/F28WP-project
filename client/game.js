@@ -11,7 +11,7 @@ $(document).ready(function(){
     var fuelToken = $('#fuel')                                //Selector to give the number of fuel tokens on HTML
     var avoidsound = document.getElementById('avoidsound');   //Selector for sound for avoiding obstacles
     var coinSound = document.getElementById('collectsound');  //Selector for sound for collecting coins
-    avoidsound.volume = 0.1;                                  //Setting the volume for the jumping and slashing
+    avoidsound.volume = 0.1;                                  //Setting the volume 
     coinSound.volume = 0.1;
     var socket = io();                                        //For socket.io
     var username;                                             //Storing the username 
