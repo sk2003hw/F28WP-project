@@ -44,49 +44,39 @@ $(document).ready(function(){
             var obstacle_random = Math.floor(Math.random() * 500);         //To get the new random position for the grave
             var racer_height = parseInt(style.css('top'));            //To get the top position of the knight
             
-      /* COLLISION DETECTION (Game Over Condition): */      
+          /* COLLISION DETECTION (Game Over Condition): */      
 
-    if( obstacle_current_position < 0  && racer_height > (-90) )   {
-                
-                //To remove the score that got updated for the colliding obstacle
-                --score;
-                console.log('GAME OVER : You collided with an obstacle');
-                game_over();
-            }
-            
-            /*
-                Updating score from passing obstacles
-                we check if it has been scored already so that it doesnt add to the score for every time it passes the first condition
-            */         
+        if( obstacle_current_position < 0  && racer_height > (-90) )   {
 
-    
-    if(obstacle_current_position < 15 && hasAvoidedObstacle == false){
-                hasAvoidedObstacle = true;
-                score++;
-                if(score > -1)
-                    game.html(score);
-            }        
-            
-       
-    
-    if(obstacle_current_position < change_position){
-                hasAvoidedObstacle = false;
+                    //To remove the score that got updated for the colliding obstacle
+                    --score;
+                    console.log('GAME OVER : You collided with an obstacle');
+                    game_over();
+                }
 
-                //We keep a random new position for the obstacles to increase complexity of the coming obstacles
-                obstacle_current_position = obstacle_initial_position + obstacle_random;
+                /*
+                    Updating score from passing obstacles
+                    we check if it has been scored already so that it doesnt add to the score for every time it passes the first condition
+                */         
 
-                //For checking
-                console.log("obstacle new position :" + obstacle_current_position);
-            }
-    
-    
-    
-    
 
-    
-    
-    
-    
-    
-   
-} 
+        if(obstacle_current_position < 15 && hasAvoidedObstacle == false){
+                    hasAvoidedObstacle = true;
+                    score++;
+                    if(score > -1)
+                        game.html(score);
+                }        
+
+
+
+        if(obstacle_current_position < change_position){
+                    hasAvoidedObstacle = false;
+
+                    //We keep a random new position for the obstacles to increase complexity of the coming obstacles
+                    obstacle_current_position = obstacle_initial_position + obstacle_random;
+
+                    //For checking
+                    console.log("obstacle new position :" + obstacle_current_position);
+                }
+        });
+}); 
