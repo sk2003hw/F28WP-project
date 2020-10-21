@@ -3,7 +3,7 @@
 //function is available when the document is loaded
 $(document).ready(function(){
 
-    var gameCourse = $('#Canvas');                        
+    var gameCourse = $('#playArea');                        
     gameCourse.addClass('animate-area');                      //To animate game canvas 
     var racer = $('#racer');                                  //Selector for racer
     var obstacle = $('#obstacles');                           //Selector for obstacles
@@ -47,11 +47,8 @@ $(document).ready(function(){
           /* COLLISION DETECTION (Game Over Condition): */      
 
         if( obstacle_current_position < 0  && racer_height > (-90) ){
-
-                    //To remove the score that got updated for the colliding obstacle
-                    --score;
-                    console.log('GAME OVER : You collided with an obstacle');
-                    game_over();
+             --score;
+             game_over();
         }
 
                 /*
@@ -60,16 +57,25 @@ $(document).ready(function(){
                 */         
 
         if(obstacle_current_position < 15 && hasAvoidedObstacle == false){
-                    hasAvoidedObstacle = true;
-                    score++;
-                    if(score > -1)
-                        game.html(score);
+            hasAvoidedObstacle = true;
+            score++;
+            if(score > -1)
+                game.html(score);
         }        
 
 
         if(obstacle_current_position < change_position){
-                    hasAvoidedObstacle = false;
-                    obstacle_current_position = obstacle_initial_position + obstacle_random;
+             hasAvoidedObstacle = false;
+             obstacle_current_position = obstacle_initial_position + obstacle_random;
         }
+        
+        if(score>1){
+             gameCourse.append("<div id = 'coin'> </div>");
+        }
+        
+        if(score>2){
+             gameCourse.append("<div id = 'fuel'> </div>");
+        }
+            
         });
 }); 
