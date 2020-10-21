@@ -40,9 +40,9 @@ $(document).ready(function(){
 
         setInterval(function(){
 
-            var obstacle_current_position = parseInt(style.css('left'));   //To get the current position of the grave
-            var obstacle_random = Math.floor(Math.random() * 500);         //To get the new random position for the grave
-            var racer_height = parseInt(style.css('top'));            //To get the top position of the knight
+            var obstacle_current_position = parseInt(style.css('left'));   //To get the current position of the obstacle
+            var obstacle_random = Math.floor(Math.random() * 500);         //To get the new random position for the obstacle
+            var racer_height = parseInt(style.css('top'));            //To get the top position of the racer
             
           /* COLLISION DETECTION (Game Over Condition): */      
 
