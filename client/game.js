@@ -44,15 +44,7 @@ $(document).ready(function(){
             var obstacle_random = Math.floor(Math.random() * 500);         //To get the new random position for the grave
             var racer_height = parseInt(style.css('top'));            //To get the top position of the knight
             
-      /*
-                COLLISION DETECTION (Game Over Condition):
-                Here we will check when the grave goes past the knights position 
-                AND
-                if the racer could still collide with the obstacle
-               
-               OTHERWISE
-                we continue the game
-            */      
+      /* COLLISION DETECTION (Game Over Condition): */      
 
     if( obstacle_current_position < 0  && racer_height > (-90) )   {
                 
@@ -62,7 +54,7 @@ $(document).ready(function(){
                 game_over();
             }
             
-    /*
+            /*
                 Updating score from passing obstacles
                 we check if it has been scored already so that it doesnt add to the score for every time it passes the first condition
             */         
@@ -75,16 +67,9 @@ $(document).ready(function(){
                     game.html(score);
             }        
             
-       /*
-                if it passes the the position of change (change_position)
-                We have make it enter the div again as a loop 
-                This way, we only have one div of the obstacle that travels through the div for the knight to move left or right
-            */      
-    
+       
     
     if(obstacle_current_position < change_position){
-                //Since its entering as a 'new' grave, it's score check will turn to false 
-                //This is because the racer has not been scored for the new obstacle entering yet
                 hasAvoidedObstacle = false;
 
                 //We keep a random new position for the obstacles to increase complexity of the coming obstacles
