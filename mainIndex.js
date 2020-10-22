@@ -9,7 +9,7 @@ $(document).ready(function(){
  var canvas = $('#login');
 
    //ON LOADING - The div will be of color blue 
- canvas.css('background-color', 'blue');
+ canvas.css('background-color', 'deepSkyBlue');
 
  $('#submit').hover(
      function(){
