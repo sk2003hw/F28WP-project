@@ -6,13 +6,12 @@
 
 $(document).ready(function(){ 
     
- var canvas = $('#myCanvas');
+ var canvas = $('#login');
 
    //ON LOADING - The div will be of color blue 
  canvas.css('background-color', 'blue');
 
-   //The 'Begin Game' text will grow on hover and the user clicks to begin the game.
- $('#begin').hover(
+ $('#submit').hover(
      function(){
          $(this).animate({fontSize: '105px'}, 1000);
      },        
