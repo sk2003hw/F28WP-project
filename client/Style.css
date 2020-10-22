@@ -67,7 +67,7 @@ span {
    	overflow: hidden;
 }
 
-#submit{
+#submit, #join{
 	color: rgb(17, 17, 17);  
     	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif ;
     	letter-spacing: 3px;
