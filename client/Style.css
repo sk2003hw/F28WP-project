@@ -4,6 +4,7 @@ The multimedia we have used has been referenced below:
 The sounds have been taken from: 
 1.https://www.zapsplat.com/sound-effect-category/game-sounds/
 2.https://www.youtube.com/watch?v=PMENdpCGF3U&list=LL&index=5
+Font from- https://www.fontspace.com/closet-dwellers-font-f29769
 */
 
 @font-face {
@@ -37,9 +38,7 @@ h1 {
 	color: #e4f2f8;      
 	font-weight: bold;
 } 
-/*
-'https://www.freepik.com/photos/background'>Background photo created by kdekiara - www.freepik.com
-*/
+/* Refrence- https://www.freepik.com/photos/background'>Background photo created by kdekiara - www.freepik.com */
 body {
 	margin: 0;
 	background-image: url(multimedia/water-index.jpg);
@@ -123,6 +122,7 @@ span {
     	animation: animateBackground 4s linear infinite;
 }
 
+/* Reference- https://www.123rf.com/photo_65716966_stock-vector-man-riding-water-skooter-flat-cartoon-style-jet-ski-top-view-.html */
 #racer {
 	background-image: url(multimedia/racer.png);
         background-position: center center;
