@@ -154,6 +154,7 @@ span {
 	left: 500px;	
 }
 
+/*reference- https://pngtree.com/freepng/cartoon-coin_161124.html
 #coin{
 	background-image: url(multimedia/coin.png);
 	background-position: center center;
@@ -166,6 +167,8 @@ span {
     bottom: 50px;
 	left: 500px;
 }
+
+/*reference- https://www.iconfinder.com/icons/2329874/container_petrol_canister_jerrycan_fuel_gallon_cartoon_icon
 #fuel{
 	background-image: url(multimedia/fueltoken.png);
 	background-position: center center;
