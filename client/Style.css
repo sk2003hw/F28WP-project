@@ -11,33 +11,43 @@ Font from- https://www.fontspace.com/closet-dwellers-font-f29769
     font-family: headfont;
     src: url(multimedia/font.ttf);
 }
+@font-face {
+    font-family: scorefont;
+    src: url(multimedia/scorefont.otf);
+}
 
 h1 {
 	text-align: center;
-	font-size: 70px;
+	font-size: 68px;
 	letter-spacing: 3px;
-	font-family: headfont/*'Gill Sans MT', sans-serif*/;
+	font-family: headfont;
 	color: #ffffff;
 	font-weight: bolder;
 }
 
 #login {
 	text-align: center;
-	font-size: 20px;
-	letter-spacing: 2px;
-	font-family:  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 30px;
+	letter-spacing: 1px;
+	font-family:  scorefont;
 	color: #fdfdfd;
-	font-weight: bold;
+	font-weight: bolder;
+	border: 10px solid rgb(255, 255, 255);
 }
 
 #instructions {
 	font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
-	padding: 20px 0; 
+	padding: 50px 0; 
 	font-size: 20px;
 	letter-spacing: 3px;
-	color: #e4f2f8;      
+	color: #e4f2f8;    
+	display:block;  
+	text-align: center;
 	font-weight: bold;
+	top: 50px ;
+	left: 750px ;
 } 
+
 /*
 'https://www.freepik.com/photos/background'>Background photo created by kdekiara - www.freepik.com
 */
@@ -54,58 +64,91 @@ span {
   	padding: 100px;
 }
 
-#score {
+#score, #scoretext {
 	padding: 20px;
-	font-family: headfont; 
+	font-family: scorefont; 
 	text-align: center;
-	font-size: 20px;
+	font-size: 30px;
 	color: #047ac9;      
 	font-weight: bold;
 }
 
 
-#playArea { 
-	padding: 250px 0;
-    margin-left: auto;
+
+#playArea {
+	position: relative;
+	padding: 100px 100px;
+	border: 20px solid rgb(255, 255, 255);
+    height: 900px;
+    width: 1200px;
+    align-content: center;
+	align-self: center;
+	overflow: hidden;
+	margin-left: auto;
     margin-right: auto;
-    display: block;
-	width: 800px;
-	height: 100px;
-    border: 20px solid rgb(255, 255, 255);
-    overflow: hidden;
 }
 
-#submit, #join {
+#submit {
 	color: rgb(17, 17, 17);  
-	font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+	font-family: scorefont ;
 	letter-spacing: 3px;
 	font-size: 20px;
 	background-color: rgb(0, 183, 255);
 	text-align: center;
 	font-weight: bold;
-	position: relative;
+	position: absolute ;
+	margin: 10px;
+	left : 1000px;
+}
+
+#join {
+	color: rgb(17, 17, 17);  
+	font-family: headfont ;
+	letter-spacing: 3px;
+	font-size: 20px;
+	background-color: rgb(0, 183, 255);
+	text-align: center;
+	font-weight: bold;
+	position: absolute ;
 	margin: 10px;
 	left : 500px;
 }
 
 
+
+
 #ScoreDetails{
 	background-color: rgb(221, 235, 241);
 	width: 200px;
-	padding: 2px;
-	position: relative;
-	bottom : 221px;
+	padding: 10px;
+	position: absolute/*relative*/;
+	bottom : 1030px;
 	border: 5px solid rgb(60, 210, 236);
+	left : 10px;
 }
 
-#leaderboard {
+#leaderboard{
     background-color:deepskyblue;
 	font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif; 
 	font-size: 25px;
 	width: 200px;
 	padding: 10px;
 	position: relative;
-	left : 550px;
+	bottom : 100px;
+	color : rgb(17, 17, 17);
+	font-weight: bold; 	
+	left : 100px;	
+}
+
+#Start {
+	background-color:deepskyblue;
+	font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif; 
+	font-size: 25px;
+	width: 200px;
+	padding: 10px;
+	position: absolute/*relative*/;
+	left : 500px;
+	bottom : 1070px;
 	color : rgb(17, 17, 17);
 	font-weight: bold; 
 }
@@ -117,11 +160,12 @@ span {
 .animate-area	{ 
    	background-position: center center;
    	background-size: cover;
-   	height: 500px;
-   	width: 500px; 
+   	height: 1000px;
+   	width: 1200px; 
 	background-image: url(multimedia/water.jpg);
 	background-repeat: repeat;
-    animation: animateBackground 4s linear infinite;
+	animation: animateBackground 4s linear infinite;
+	position: absolute;
 }
 
 /*reference- https://www.freepik.com/vectors/water Water vector created by macrovector - www.freepik.com */
@@ -133,15 +177,15 @@ span {
 	background-size: contain;
 	height: 600px;
 	width: 300px;
-	bottom: -70px;
-	right: 250px;
+	bottom: 450px; /*-70  100*/
 	display: block;
 	position: absolute;
     
 }
 
 /*reference- https://www.freepik.com/vectors/background'>Background vector created by brgfx - www.freepik.com */
-#obstacles {
+
+#obstacle {
 	background-image: url(multimedia/obstacle.png);
 	background-position: center center;
     background-repeat: no-repeat;
@@ -150,11 +194,11 @@ span {
     width: 200px;
     display: block;
     position: absolute;
-    bottom: 100px;
-	left: 500px;	
+    bottom: 600px;
+	left: 200px;	
 }
 
-/*reference- https://pngtree.com/freepng/cartoon-coin_161124.html
+
 #coin{
 	background-image: url(multimedia/coin.png);
 	background-position: center center;
@@ -164,11 +208,9 @@ span {
 	width: 220px;
     display: block;
     position: absolute;
-    bottom: 50px;
+    bottom: 500px;
 	left: 500px;
 }
-
-/*reference- https://www.iconfinder.com/icons/2329874/container_petrol_canister_jerrycan_fuel_gallon_cartoon_icon
 #fuel{
 	background-image: url(multimedia/fueltoken.png);
 	background-position: center center;
@@ -178,9 +220,11 @@ span {
 	width: 200px;
     display: block;
     position: absolute;
-    bottom: 100px;
+    bottom: 800px;
 	left: 250px;
 }
+
+
 
 
 
