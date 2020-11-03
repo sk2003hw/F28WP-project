@@ -1,39 +1,38 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
     <html>
         <head>
             <title> AquaRun </title>
             <link rel="stylesheet" type="text/css" href="Style.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src = "https://cdn.socket.io/socket.io-1.4.5.js"></script>
-            <script type="text/javascript" src="game.js"></script> 
+            <meta charset="UTF-8">
+            <script src="jquery-3.5.1.min.js"></script>
+            
+            <script type="text/javascript" src="game1.js"></script> 
         </head>
         <body> 
             <header><h1> AquaRun </h1></header> 
-
             <div id="playArea" >
                 <p id = "ScoreDetails"> 
-                    <span id= 'coin'>Coins : </span><br>
-                    <span id='fuel'> Fuel Tokens : </span><br>
-                    <span id = 'score'> <b> Coins </b> : </span> 
+                    <span id="scoretext"> Score:</span><span id='score'> </span> 
                 </p> 
+                
                 <div id = "racer"> </div>
-                <div id = "obstacles">  </div> 
+                 
             </div>
 
             <div id="instructions">
                 <p> 
                     INSTRUCTIONS: <br>
-                    Use the TOP arrow button to collect coins and fuel tokens <br>
-                    Use Right arrow/Left arrow keys key to avoid obstacles <br>
+                    Use the arrow keys to navigate and collect coins and fuel tokens and avoid obstacle<br>
                 </p>
             </div>
             
-            <button onclick="LoadLeaderboard()" id="leaderboard" class="button">View Leaderboard</button>
             
-            <audio src="client/multimedia/Coin Collect.mp3" id="coinsound"></audio>
-            <audio src="client/multimedia/Collision.mp3" id="collidesound"></audio>
-            <audio src="client/multimedia/Game end.mp3" id="endsound"></audio>
-            <audio src="client/multimedia/background music.mp3" id="background"></audio>
+            <button onclick="LoadLeaderboard()" id="leaderboard">View Leaderboard</button>
+            
+            <audio src="multimedia/Coin Collect.mp3" id="coinsound"></audio>
+            <audio src="multimedia/Collision.mp3" id="collidesound"></audio>
+            <audio src="multimedia/Game end.mp3" id="endsound"></audio>
+            <audio src="multimedia/backgroundmusic.mp3" id="background" autoplay loop></audio>
 
 
         </body>
