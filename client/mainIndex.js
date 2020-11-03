@@ -5,11 +5,6 @@
 
 $(document).ready(function(){ 
     
- var canvas = $('#login');
-
-   //ON LOADING - The div will be of color blue 
- canvas.css('background-color', 'deepSkyBlue');
-
  $('#join').hover(
      function(){
          $(this).animate({fontSize: '50px'}, 1000);
