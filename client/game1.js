@@ -43,7 +43,7 @@ $(document).ready(function(){
     var gameBegin =
         setInterval(function(){
         //coin_current_position = parseInt(coin.css('left')); 
-        var obstacle_current_position = parseInt(obstacle.css('left'));   //To get the current position of the grave
+        var obstacle_current_position = parseInt(obstacle.css('left'));   
         var obstacle_random = Math.floor(Math.random() * 550); 
 
         if(obstacleAdded == false) {
@@ -58,7 +58,7 @@ $(document).ready(function(){
 
         coin_current_position = parseInt(coin.css('left')); 
                      //Current position of the ghost
-        var coin_initial_position = 200;                                   //Initial position of ghost
+        var coin_initial_position = 200;                                   
         var coin_random = Math.floor(Math.random() * 100) + 100 + obstacle_random;
 
         if(fuelAdded == false) {
@@ -66,8 +66,8 @@ $(document).ready(function(){
             fuelAdded = true;
         }
 
-        fuel_current_position = parseInt(fuel.css('left'));               //Current position of the ghost
-        var fuel_initial_position = 200;                                   //Initial position of ghost
+        fuel_current_position = parseInt(fuel.css('left'));             
+        var fuel_initial_position = 200;                                   
         var fuel_random = Math.floor(Math.random() * 100) + 100 + obstacle_random;
         obstacle.css('left', obstacle_current_position - speed);
         speed += 0.002;
@@ -125,8 +125,5 @@ $(document).ready(function(){
 //}
 //if(cross(racer,fueltoken)){
 //    score++;
-//<p>You can ajust  speed <input type="text" id="speedBees" value="50" size="3"> px/ms
-  //                  <p>Best duration: [<span id="duration">?</span>]</p>
-    //                <p>Bear tries to avoid being stung by <input type="text" id="nbBees" value="1" size="3"> bees by running and jumping. The objective is to have as less stings as possible!</p>
-      //              <br> and the refresh period <input type="text" id="periodTimer" value="10" size="3"> ms </p>
+
 //}
