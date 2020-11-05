@@ -16,7 +16,7 @@ $(document).ready(function(){
     var scoreval = 0;                                         //Initial Score 
     var hasAvoidedObstacle = false;                         //To check if the racer avoided the obstacle or not                               
     var hascollectedcoin = false;
-    var obstacle_current_position = 0;                          //Current position of the coin
+    var obstacle_current_position = 0;                          //Current position of the obstacle
     var fuel_current_position = 200; 
     var coin_current_position = 100;
     var coinAdded = false;
