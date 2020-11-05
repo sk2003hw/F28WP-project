@@ -6,7 +6,7 @@ $(document).ready(function(){
     var score = $('#score')
     var collideSound = document.getElementById("collidesound");   //Selector for sound for avoiding obstacles
     var coinSound = document.getElementById("coinsound");  //Selector for sound for collecting coins
-    collidesound.volume = 0.5;                                  //Setting the volume for the jumping and slashing
+    collidesound.volume = 0.5;                                  //Setting the volume 
     coinSound.volume = 0.9;
     //var socket = io();                                        //For socket.io
     //var username;                                             //Storing the username 
