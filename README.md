@@ -3,14 +3,13 @@
 (Members- sk2003, mas25, apv2, jns5)
 <h2><strong>AQUARUN</strong></h2>
 
-<h4>Aquarun is a thrilling jet ski racing game. Hop on the jet ski and speed your way across the sea! Before time ends, collect as many coins as you can to receive a special prize at the end! <br>
+<h4>Aquarun is a thrilling jet ski racing game. Hop on the jet ski and speed your way across the sea! Before time ends, collect as many coins as you can to steer your way through the leaderboard! <br>
 </h4> <h4>
-But do be careful to avoid the incoming obstacles and do not forget to collect the fuel tokens for extra time!! <br>
+But do be careful to avoid the incoming obstacles and do not forget to collect the fuel tokens for extra points!! <br>
 Players can login to save their scores and see their previous scores, personal high score and their position in the global leaderboard.
 </h4>
 INSTRUCTIONS: <br>
-Use the TOP arrow button to collect coins and fuel tokens <br>
-Use SPACE key to jump over obstacles <br>
+ Use the up or down arrow keys to navigate and avoid obstacle and press any key collect coins and fuel tokens
 
 # Draft Image
 ![alt text](https://github.com/F28WP-Dubai-nibbleByte/F28WP-project/blob/master/PROJECT-1.jpg?raw=true)
