@@ -1,0 +1,1 @@
+/* this file is used for the server part of the game*/
