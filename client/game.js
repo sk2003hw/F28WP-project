@@ -401,38 +401,5 @@ $(document).ready(function(){
     }
 })
 
-    socket.on('bestYet', function(user1, score1, user2, score2, user3, score3){
-
-            //If there is only one score available
-            if(user2 == undefined)
-                $('#playarea').append('<table id = "leaderboard"> <tr> <th colspan="2">Best Global Scores</th> <tr> <th>Username : </th> <th>Score : </th> </tr> <tr> <td> ' + user1 +'</td> <td>' + score1 + '</td> </tr> </table>');
-            
-            //If there are two scores available
-            else if(user3 == undefined)
-                $('#playarea').append('<table id = "leaderboard"> <tr> <th colspan="2">Best Global Scores</th> <tr> <th>Username : </th> <th>Score : </th> </tr> <tr> <td> ' + user1 +'</td> <td>' + score1 + '</td> </tr> <tr> <td>' + user2 + '</td> <td>' + score2 + '</td> </tr> </table>');
-            
-            //If top 3 scores are available
-            else
-                //We display the best score table for all users yet
-                $('#playarea').append('<table id = "leaderboard"> <tr> <th colspan="2">Best Global Scores</th> <tr> <th>Username : </th> <th>Score : </th> </tr> <tr> <td> ' + user1 +'</td> <td>' + score1 + '</td> </tr> <tr> <td>' + user2 + '</td> <td>' + score2 + '</td> </tr> <tr> <td>' + user3 + '</td> <td>' + score3 + '</td> </tr> </table>');
-        });
-
-        socket.on('bestNow', function(user1, score1, user2, score2, user3, score3){
-
-            //If there is only one score available
-            if(user2 == undefined)
-                $('#playarea').append('<table id = "ScoreDetails"> <tr> <th colspan="2">Best Active Scores</th> <tr> <th>Username : </th> <th>Score : </th> </tr> <tr> <td> ' + user1 +'</td> <td>' + score1 + '</td> </tr> </table>');
-                        
-            //If there are two scores available
-            else if(user3 == undefined)
-                $('#playarea').append('<table id = "ScoreDetails"> <tr> <th colspan="2">Best Active Scores</th> <tr> <th>Username : </th> <th>Score : </th> </tr> <tr> <td> ' + user1 +'</td> <td>' + score1 + '</td> </tr> <tr> <td>' + user2 + '</td> <td>' + score2 + '</td> </tr> </table>');
-            
-            //If top 3 scores are available
-            else
-                //We display the best score table for all users yet
-                $('#playarea').append('<table id = "ScoreDetails"> <tr> <th colspan="2">Best Active Scores</th> <tr> <th>Username : </th> <th>Score : </th> </tr> <tr> <td> ' + user1 +'</td> <td>' + score1 + '</td> </tr> <tr> <td>' + user2 + '</td> <td>' + score2 + '</td> </tr> <tr> <td>' + user3 + '</td> <td>' + score3 + '</td> </tr> </table>');
-        });
-    }
-});
-})
+   
  
