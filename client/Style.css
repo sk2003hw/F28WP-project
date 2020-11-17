@@ -93,7 +93,7 @@ span {
 }
 
 /*To set the style of the elements of ids- score and scoretext*/
-#score, #scoretext {
+#score, #scoretext{
 	padding: 20px;
 	font-family: scorefont; 
 	text-align: center;
@@ -147,7 +147,7 @@ span {
 /*To set the style of the element of id- ScoreDetails*/
 #ScoreDetails{
 	background-color: rgb(221, 235, 241);
-	width: 200px;
+	width: 500px;
 	padding: 10px;
 	position: absolute/*relative*/;
 	bottom : 1030px;
@@ -199,6 +199,7 @@ reference to the image- https://www.freepik.com/vectors/water Water vector creat
     
 }
 
+
 /*To set the style of the heading element of id- obstacle
 reference to the image- https://www.freepik.com/vectors/background'>Background vector created by brgfx - www.freepik.com 
 */
@@ -245,16 +246,76 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
     display: block;
     position: absolute;
     bottom: 620px;
-	left: 100px;
+	left: 1000px;
+}
+/*for racer-2-------------------------------------------------------------*/
+
+#racer1 {
+	background-image: url(multimedia/racer.png);
+    background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 600px;
+	width: 300px;
+	bottom: 100px; 
+	display: block;
+	position: absolute;
+    
 }
 
+#obstacle1 {
+	background-image: url(multimedia/obstacle.png);
+	background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 160px;
+    width: 200px;
+    display: block;
+    position: absolute;
+    bottom: 300px;
+	left: 1000px;	
+}
 
+/*To set the style of the heading element of id- coin
+reference to the image- https://pngtree.com/freepng/cartoon-coin_161124.html
+*/
+#coin1{
+	background-image: url(multimedia/coin.png);
+	background-position: center center;
+    background-repeat: no-repeat;
+	background-size: contain;
+	height: 150px;
+	width: 220px;
+    display: block;
+    position: absolute;
+    bottom: 320px;
+	left: 1000px;
+}
 
+/*To set the style of the heading element of id- fuel
+reference to the image- https://www.iconfinder.com/icons/2329874/container_petrol_canister_jerrycan_fuel_gallon_cartoon_icon
+*/
+#fuel1{
+	background-image: url(multimedia/fueltoken.png);
+	background-position: center center;
+    background-repeat: no-repeat;
+	background-size: contain;
+	height: 100px;
+	width: 200px;
+    display: block;
+    position: absolute;
+    bottom: 320px;
+	left: 1000px;
+}
 
-
-
-
-
-
+/*To set the style of the elements of ids- score and scoretext*/
+#score1, #scoretext1{
+	padding: 20px;
+	font-family: scorefont; 
+	text-align: center;
+	font-size: 30px;
+	color: #047ac9;      
+	font-weight: bold;
+}
 
 
