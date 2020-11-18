@@ -42,6 +42,22 @@ $(document).ready(function(){
 
 //------------------------------------------------------------------------
 
+//For player 3--------------------------------------------------------------------
+var score2 = $('#score2');                               //Selector for score
+var scoreval2 = 0;                                       //Initial Score 
+var hasAvoidedObstacle2 = false;                         //To check if the racer avoided the obstacle or not                               
+var hascollectedcoin2 = false;                           //To check if racer has collected a coin
+var caughtfuel2 = false;                                 //To check if racer has collected a fuel token
+var obstacle_current_position2 = 0;                      //Current position of the obstacle
+var fuel_current_position2 = 0;                          //Current position of the fuel token
+var coin_current_position2 = 0;                          //Current position of the coin
+var coinAdded2 = false;                                  //To check if the coin has been added
+var fuelAdded2 = false;                                  //To check if the fuel token has been added
+var obstacleAdded2 = false;                              //To check if the fuel token has been added
+var racer2 = $('#racer2');                               //Selector for racer-2
+
+//------------------------------------------------------------------------
+
     //Runs indefinitely until the game is over   
     var gameBegin = setInterval(function(){
          
@@ -59,8 +75,17 @@ $(document).ready(function(){
         var obstacle1 = $('#obstacle1');                               //Selector for obstacle                                       
         obstacle_current_position1 = parseInt(obstacle1.css('left'));  //Initialising the position of the obstacle
         var racer_top_pos1 = parseInt(racer1.css('top'));              //Initialising the position of the racer 
-
+       
         //--------------------------------------end
+
+        // For player 3 ------------------------------------------
+
+         var obstacle2 = $('#obstacle2');                               //Selector for obstacle                                       
+         obstacle_current_position2 = parseInt(obstacle2.css('left'));  //Initialising the position of the obstacle
+         var racer_top_pos2 = parseInt(racer2.css('top'));              //Initialising the position of the racer 
+         
+        //--------------------------------------end
+
 
         //Add the obstacle to the playArea if it has not been added yet (To make sure obstacle is added)
         if(obstacleAdded === false) {
@@ -69,7 +94,7 @@ $(document).ready(function(){
         }
 
         //Game Over condition- To check if the obstacle has crossed the position of the racer but the racer has not jumped
-        if(obstacle_current_position<=200 && (racer_top_pos===110))  {
+        if(obstacle_current_position<=200 && (racer_top_pos===210))  {
             var sound = true;
             //To play the sound when the racer collides with the obstacle
             if(sound){
@@ -116,11 +141,10 @@ $(document).ready(function(){
         if(obstacleAdded1 === false) {
             gamecourse.append("<div id = 'obstacle1'> </div>");
            obstacleAdded1 = true;
-           console.log(racer_top_pos);
         }
 
         //Game Over condition- To check if the obstacle has crossed the position of the racer but the racer has not jumped
-        if(obstacle_current_position1<=200 && (racer_top_pos1===400))  {
+        if(obstacle_current_position1<=200 && (racer_top_pos1===500))  {
             var sound = true;
             //To play the sound when the racer collides with the obstacle
             if(sound){
@@ -230,7 +254,7 @@ $(document).ready(function(){
 
                 if(fuel_current_position1 < 200 && caughtfuel1 === false){
                     caughtfuel1 = true;
-                    fue1l.fadeOut();
+                    fuel1.fadeOut();
                     
                     //Incrementing the score and writing it
                     scoreval1+=1; 
@@ -247,11 +271,155 @@ $(document).ready(function(){
             });
 
             //To move the fuel token and at the below speed
-            fuel1.css('left', fuel_current_position1 - speed)-1;
+            fuel1.css('left', fuel_current_position1 - speed);
         }
 
         //To move the obstacle and at the below speed
-        obstacle1.css('left', obstacle_current_position1 - speed- 1); 
+        obstacle1.css('left', obstacle_current_position1 - speed); 
+       
+        //-------------------------------------------------------------end
+
+        //For player-3  ---------------------------------------------------
+
+        //Add the obstacle to the playArea if it has not been added yet (To make sure obstacle is added)
+        if(obstacleAdded2 === false) {
+           gamecourse.append("<div id = 'obstacle2'> </div>");
+           obstacleAdded2 = true;
+        }
+
+        //Game Over condition- To check if the obstacle has crossed the position of the racer but the racer has not jumped
+        if(obstacle_current_position2<=200 && (racer_top_pos2=== 30))  {
+            var sound = true;
+            //To play the sound when the racer collides with the obstacle
+            if(sound){
+                collideSound.currentTime = 0;
+                collideSound.play();
+                sound= false;
+            }
+            //Calling the game_over function
+            game_over();
+         }
+        
+
+        var obstacle_random2 = Math.floor(Math.random() * 100) + 100;    // To place the obstacle randmly
+
+        //To re-initialise the obstacle
+        if(obstacle_current_position2 < -10){
+            hasAvoidedObstacle2 = false;
+            obstacle_current_position2 = 1100 + obstacle_random2;
+            obstacle2.fadeIn();
+        }
+        
+    
+        //When the obstacle has been avoided...
+        if(obstacle_current_position2 < 200 && hasAvoidedObstacle2 === false){
+            hasAvoidedObstacle2 = true;
+
+            //We update the score on the HTML
+            scoreval2++;
+            score2.html(scoreval2); 
+
+            //To play the sound
+            var sound = true;
+            if(sound){
+                coinSound.currentTime = 0;
+                coinSound.play();
+                sound= false;
+            }
+                
+        } 
+
+        if(scoreval2>2){
+
+            var coin2 = $('#coin2');                                                  //Selector for the coin
+            coin_current_position2 = parseInt(coin2.css('left'));                     //Initialising the postion of the coin                                              
+            var coin_random2 = Math.floor(Math.random() * 100) + obstacle_random2;    //to aid in getting a random for the coin
+            
+            //Add the coin to the play area if it has not been added yet
+            if(coinAdded2 === false) {
+                gamecourse.append("<div id = 'coin2'> </div>");
+                coinAdded2 = true;
+            }
+
+            //Re-initialise the coin
+            if(coin_current_position2 < -10){
+                hascollectedcoin2 = false;
+                coin_current_position2 = 1100 + coin_random2;
+                coin2.fadeIn();
+            }
+            
+            //If any key has been pressed and coin has crossed the position of the racer, score will be incremented
+            $(document).keydown(function(event){
+                var sound = true;
+
+                if(coin_current_position2 < 200 && hascollectedcoin2 === false){
+                    hascollectedcoin2=true;
+                    coin2.fadeOut();
+                    
+                    //Incrementing the score and writing it
+                    scoreval2++; 
+                    score2.html(scoreval2); 
+
+                    //To play the sound
+                    if (sound) {
+                        coinSound.currentTime = 0;
+                        coinSound.play();
+                        soundFlag = false;
+                    }
+            
+                 } 
+            });
+
+            //To move the coin and at the below speed
+            coin2.css('left', coin_current_position1 - speed);
+        }
+
+        if(scoreval2>4){
+            var fuel2 = $('#fuel2');                                              //Selector for the fuel token
+            fuel_current_position2 = parseInt(fuel2.css('left'));                 //Initialising the position of the fuel token                                            
+            var fuel_random2 = Math.floor(Math.random()) + obstacle_random2  ;    //To aid in getting a random positon of the fuel token
+            
+            //Add the fuel token to the play area if it has not been added yet
+            if(fuelAdded2 === false) {
+                gamecourse.append("<div id = 'fuel2'> </div>");
+                fuelAdded2 = true;
+            }
+
+            //Re-initialising the fuel token
+            if(fuel_current_position2 < -10){
+                caughtfuel2 = false;
+                fuel_current_position2 = 1100 + fuel_random2 ;
+                fuel2.fadeIn();
+            }
+            
+            //If any key has been pressed and fuel token has crossed the position of the racer, score will be incremented
+            $(document).keydown(function(event){
+                var sound = true;
+
+                if(fuel_current_position2 < 200 && caughtfuel2 === false){
+                    caughtfuel2 = true;
+                    fuel2.fadeOut();
+                    
+                    //Incrementing the score and writing it
+                    scoreval2+=1; 
+                    score2.html(scoreval2); 
+
+                    //To play the sound
+                    if (sound) {
+                        coinSound.currentTime = 0;
+                        coinSound.play();
+                        sound = false;
+                    }
+            
+                 } 
+            });
+
+            //To move the fuel token and at the below speed
+            fuel2.css('left', fuel_current_position2 - speed);
+        }
+
+        //To move the obstacle and at the below speed
+        obstacle2.css('left', obstacle_current_position2 - speed); 
        
         //-------------------------------------------------------------end
         
@@ -382,6 +550,21 @@ $(document).ready(function(){
         }
         
     });
+
+    $(document).on('keydown', function(e){
+        var key = e.keyCode;
+        
+        if(key===38){ //left arrow
+            racer2.animate({top:'-=200px'},1050);
+            racer2.animate({top:'+=200px'},1050);
+        }
+        
+        else if(key===40){ //right arrow
+            racer2.animate({top:'+=200px'},1050);
+            racer2.animate({top:'-=200px'},1050);
+        }
+        
+    });
     
     //Game over function to be executed when the game is over
     function game_over() {
@@ -400,6 +583,3 @@ $(document).ready(function(){
         }
     }
 })
-
-   
- 
