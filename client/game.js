@@ -54,7 +54,7 @@ var coin_current_position2 = 0;                          //Current position of t
 var coinAdded2 = false;                                  //To check if the coin has been added
 var fuelAdded2 = false;                                  //To check if the fuel token has been added
 var obstacleAdded2 = false;                              //To check if the fuel token has been added
-var racer2 = $('#racer2');                               //Selector for racer-2
+var racer2 = $('#racer2');                               //Selector for racer-3
 
 //------------------------------------------------------------------------
 
@@ -520,7 +520,7 @@ var racer2 = $('#racer2');                               //Selector for racer-2
     });
     
 
-    //To move the racer up/down when the up/down arrow keys are pressed
+    //To move the racer-1 up/down when the up/down arrow keys are pressed
     $(document).on('keydown', function(e){
         var key = e.keyCode;
         
@@ -536,6 +536,7 @@ var racer2 = $('#racer2');                               //Selector for racer-2
         
     });
 
+    //To move the racer-2 up/down when the up/down arrow keys are pressed
     $(document).on('keydown', function(e){
         var key = e.keyCode;
         
@@ -550,7 +551,7 @@ var racer2 = $('#racer2');                               //Selector for racer-2
         }
         
     });
-
+    //To move the racer-3 up/down when the up/down arrow keys are pressed
     $(document).on('keydown', function(e){
         var key = e.keyCode;
         
