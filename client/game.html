@@ -5,23 +5,28 @@
             <link rel="stylesheet" type="text/css" href="Style.css">
             <meta charset="UTF-8">
             <script type="text/javascript" src="jquery-3.5.1.js"></script>
-            <script type="text/javascript" src="game.js"></script> 
+            <script type="text/javascript" src="gameprac.js"></script> 
         </head>
         <body> 
             <header><h1> AquaRun </h1></header> 
             <div id="playArea" >
                 <p id = "ScoreDetails"> 
-                    <span id="scoretext"> Score:</span><span id='score'> </span> 
+                    <span id="scoretext2"> Score:</span><span id='score2'> </span>
+                    <span id="scoretext"> Score:</span><span id='score'> </span>
+                    <span id="scoretext1"> Score:</span><span id='score1'> </span>
                 </p> 
                 
                 <div id = "racer"> </div>
+                <div id = "racer1"> </div>
+                <div id = "racer2"> </div>
                  
+                
             </div>
 
             <div id="instructions">
                 <p> 
                     INSTRUCTIONS: <br>
-                     Use the up or down arrow keys to navigate and avoid obstacle and press any key collect coins and fuel tokens <br>
+                    Use the up or down arrow keys to navigate and avoid obstacle and press any key collect coins and fuel tokens<br>
                 </p>
             </div>
             
@@ -31,7 +36,7 @@
             <audio src="multimedia/Coin Collect.mp3" id="coinsound"></audio>
             <audio src="multimedia/Collision.mp3" id="collidesound"></audio>
             <audio src="multimedia/Game end.mp3" id="endsound"></audio>
-            <audio src="multimedia/backgroundmusic.mp3" id="background" autoplay loop></audio>
+            <audio src="multimedia/backgroundmusic.mp3" id="background"></audio>
 
 
         </body>
