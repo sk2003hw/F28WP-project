@@ -14,3 +14,18 @@ app.use(express.static('client'));
 app.get('/' , function(request,response) {
     response.sendFile({root: __dirname} + '/client/index.html')});
 
+
+var mysql = require('mysql');
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "username",
+    password: "password"
+});
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connecting to the database")
+    con.query("CREATE DATABASE database", function(err, result){
+        if (err) throw err;
+        console.log("Created the Database");
+    }
+)})
