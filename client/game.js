@@ -60,11 +60,6 @@ var racer2 = $('#racer2');                               //Selector for racer-3
 
     //Runs indefinitely until the game is over   
     var gameBegin = setInterval(function(){
-         
-        //Playing the background music
-        var backsound = document.getElementById("background");
-        backsound.volume = 0.9;                                       //Initialising the volume
-        backsound.play();
 
         var obstacle = $('#obstacle');                               //Selector for obstacle                                       
         obstacle_current_position = parseInt(obstacle.css('left'));  //Initialising the position of the obstacle
@@ -92,8 +87,10 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             gamecourse.append("<div id = 'obstacle'> </div>");
            obstacleAdded = true;
         }
-
-        //Game Over condition- To check if the obstacle has crossed the position of the racer but the racer has not jumped
+        
+        //The position of the racer is 200 (from the left) so this condition has been used to check if elements have crossed the position of the racer
+        
+        //Game Over condition- To check if the obstacle has crossed the position of the racer (200) and the racer has not jumped (is still 210)
         if(obstacle_current_position<=200 && (racer_top_pos===210))  {
             var sound = true;
             //To play the sound when the racer collides with the obstacle
@@ -143,7 +140,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
            obstacleAdded1 = true;
         }
 
-        //Game Over condition- To check if the obstacle has crossed the position of the racer but the racer has not jumped
+        //Game Over condition- To check if the obstacle has crossed the position of the racer (200) but the racer has not jumped (still is 500)
         if(obstacle_current_position1<=200 && (racer_top_pos1===500))  {
             var sound = true;
             //To play the sound when the racer collides with the obstacle
@@ -207,7 +204,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             //If any key has been pressed and coin has crossed the position of the racer, score will be incremented
             $(document).keydown(function(event){
                 var sound = true;
-
+                //position of coin is less than that of the racer
                 if(coin_current_position1 < 200 && hascollectedcoin1 === false){
                     hascollectedcoin1=true;
                     coin1.fadeOut();
@@ -251,7 +248,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             //If any key has been pressed and fuel token has crossed the position of the racer, score will be incremented
             $(document).keydown(function(event){
                 var sound = true;
-
+                 //position of fuel token is less than that of the racer
                 if(fuel_current_position1 < 200 && caughtfuel1 === false){
                     caughtfuel1 = true;
                     fuel1.fadeOut();
@@ -351,7 +348,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             //If any key has been pressed and coin has crossed the position of the racer, score will be incremented
             $(document).keydown(function(event){
                 var sound = true;
-
+                 //position of coin is less than that of the racer
                 if(coin_current_position2 < 200 && hascollectedcoin2 === false){
                     hascollectedcoin2=true;
                     coin2.fadeOut();
@@ -395,7 +392,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             //If any key has been pressed and fuel token has crossed the position of the racer, score will be incremented
             $(document).keydown(function(event){
                 var sound = true;
-
+                 //position of fuel token is less than that of the racer
                 if(fuel_current_position2 < 200 && caughtfuel2 === false){
                     caughtfuel2 = true;
                     fuel2.fadeOut();
@@ -446,7 +443,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             //If any key has been pressed and coin has crossed the position of the racer, score will be incremented
             $(document).keydown(function(event){
                 var sound = true;
-
+                 //position of coin is less than that of the racer
                 if(coin_current_position < 200 && hascollectedcoin === false){
                     hascollectedcoin=true;
                     coin.fadeOut();
@@ -490,7 +487,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             //If any key has been pressed and fuel token has crossed the position of the racer, score will be incremented
             $(document).keydown(function(event){
                 var sound = true;
-
+                 //position of fuel token is less than that of the racer
                 if(fuel_current_position < 200 && caughtfuel === false){
                     caughtfuel = true;
                     fuel.fadeOut();
