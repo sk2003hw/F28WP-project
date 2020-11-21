@@ -1,0 +1,33 @@
+{
+  "name": "f28wp-nibblebyte",
+  "version": "1.0.0",
+  "description": "server side",
+  "main": "app.js",
+  "dependencies": {
+    "connect": "^3.7.0",
+    "connect-assetmanager": "0.0.24",
+    "connect-assetmanager-handlers": "0.0.17",
+    "express": "^4.17.1",
+    "jade": "^0.16.2",
+    "less": "^1.1.5",
+    "log4js": "^0.3.9",
+    "memcached": "0.0.5",
+    "redis-url": "0.0.1",
+    "request": "^2.2.0",
+    "underscore": "^1.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/F28WP-Dubai-nibbleByte/F28WP-project.git"
+  },
+  "author": "mas25 and apv2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/F28WP-Dubai-nibbleByte/F28WP-project/issues"
+  },
+  "homepage": "https://github.com/F28WP-Dubai-nibbleByte/F28WP-project#readme"
+}

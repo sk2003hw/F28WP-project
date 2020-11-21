@@ -18,6 +18,8 @@ app.get('/' , function(request,response) {
 
 
 var mysql = require('mysql');
+const { urlencoded } = require('express');
+const { createConnection } = require('net');
 var con = mysql.createConnection({
     host: "localhost",
     user: "username",
@@ -30,6 +32,58 @@ con.connect(function(err) {
         if (err) throw err;
         console.log("Created the Database");
     })})
+
+app.post('/auth' , urlencodedParser, function(request,response){
+    username = request.body.user;
+    password = request.body.pass;
+    username = username.replace("@","");
+    username = username.replace(";","");
+    username = username.replace("!","");
+    username = username.replace("","");
+    username = username.replace("#","");
+    username = username.replace("$","");
+    username = username.replace("%","");
+    username = username.replace("^","");
+    username = username.replace("*","");
+    username = username.replace("&","");
+    username = username.replace("(","");
+    username = username.replace(")","");
+    username = username.replace("=","");
+    username = username.replace("{","");
+    username = username.replace("}","");
+    username = username.replace(">","");
+    username = username.replace(":","");
+    username = username.replace("<","");
+    var checkusername = "SELECT * from players WHERE username = '" + user + "';";
+    con.query(checkusername, function(err, result){
+        if (err) throw err;
+        if(result.length)
+        var checkPassword = "Select * from players WHERE Password = '" + pass + "';";
+    con.query(checkPassword, function(err, result){
+        if(err) throw err;
+        console.log(result + "password");
+        if(result.length){
+            console.log("Correct password exists");
+            response.sendFile(__dirname + '/client/game.html');
+        }
+        else{
+            console.log("Incorrect Password!");
+            response.sendFile(__dirname + '/client/index.html')
+        }});
+    else{
+    console.log("user does not exist!");
+    var SQL = "INSERT INTO players (Username, Password) VALUES ('"+ user +"','"+ pass+"');";
+    con.query(SQL, function (err,result) {
+        if (err) throw err;
+        console.log("first record installed");
+        });
+        response.sendFile(__dirname + '/client/game.html');
+    }
+
+
+
+
+
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port,function(){
@@ -53,4 +107,4 @@ socket.on('playingAgain', function(user,pass){
         password = pass;
     console.log(username + " " + password);
 
-});
+});})})
