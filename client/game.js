@@ -60,7 +60,8 @@ var racer2 = $('#racer2');                               //Selector for racer-3
 
     //Runs indefinitely until the game is over   
     var gameBegin = setInterval(function(){
-
+        //On the scrren, the players are shown in the order- player-3, player-1, player-2
+        //For player 1
         var obstacle = $('#obstacle');                               //Selector for obstacle                                       
         obstacle_current_position = parseInt(obstacle.css('left'));  //Initialising the position of the obstacle
         var racer_top_pos = parseInt(racer.css('top'));              //Initialising the position of the racer          
@@ -71,7 +72,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
         obstacle_current_position1 = parseInt(obstacle1.css('left'));  //Initialising the position of the obstacle
         var racer_top_pos1 = parseInt(racer1.css('top'));              //Initialising the position of the racer 
        
-        //--------------------------------------end
+        //--------------------------------------
 
         // For player 3 ------------------------------------------
 
@@ -79,7 +80,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
          obstacle_current_position2 = parseInt(obstacle2.css('left'));  //Initialising the position of the obstacle
          var racer_top_pos2 = parseInt(racer2.css('top'));              //Initialising the position of the racer 
          
-        //--------------------------------------end
+        //--------------------------------------
 
 
         //Add the obstacle to the playArea if it has not been added yet (To make sure obstacle is added)
@@ -274,7 +275,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
         //To move the obstacle and at the below speed
         obstacle1.css('left', obstacle_current_position1 - speed); 
        
-        //-------------------------------------------------------------end
+        //-------------------------------------------------------------
 
         //For player-3  ---------------------------------------------------
 
@@ -418,8 +419,9 @@ var racer2 = $('#racer2');                               //Selector for racer-3
         //To move the obstacle and at the below speed
         obstacle2.css('left', obstacle_current_position2 - speed); 
        
-        //-------------------------------------------------------------end
+        //-------------------------------------------------------------
         
+        //For player-1--------------------------------------------------
         //Add the coin when the score is greater than 1
         if(scoreval>1){
 
@@ -513,6 +515,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
         //To move the obstacle and at the below speed
         obstacle.css('left', obstacle_current_position - speed); 
         
+        //---------------------------------------------------------------
         
     });
     
