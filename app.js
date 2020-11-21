@@ -1,11 +1,14 @@
 /* this file is used for the server part of the game*/
 const express = require('express');
 const app = express();
+const dataparser = require('body-parser'); 
 var username;
 var password;
+const urlencodedParser = dataparser();
 const path = require('path');
 const http = require('http');
 const socketIO = require('socket.io')
+var encPassword;
 const server = http.createServer((request, response) => {
     if (request.url === '/') {
         response.write("Hello");
@@ -54,12 +57,17 @@ app.post('/auth' , urlencodedParser, function(request,response){
     username = username.replace(">","");
     username = username.replace(":","");
     username = username.replace("<","");
+
+    var key = crypto.createCipher('aes-128-cbc', 'pass');
+    encPassword = key.update(pass, 'utf8', 'hex')
+    encPassword += key.final('hex');
+
     var checkusername = "SELECT * from players WHERE username = '" + user + "';";
     con.query(checkusername, function(err, result){
         if (err) throw err;
 
         if(result.length){
-            var checkPassword = "Select * from players WHERE Password = '" + pass + "';";
+            var checkPassword = "Select * from players WHERE Password = '" + encPassword + "';";
             con.query(checkPassword, function(err, result){
                 if(err) throw err;
                 console.log(result + "password");
