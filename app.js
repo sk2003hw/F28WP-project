@@ -57,19 +57,24 @@ app.post('/auth' , urlencodedParser, function(request,response){
     var checkusername = "SELECT * from players WHERE username = '" + user + "';";
     con.query(checkusername, function(err, result){
         if (err) throw err;
-        if(result.length)
-        var checkPassword = "Select * from players WHERE Password = '" + pass + "';";
-    con.query(checkPassword, function(err, result){
-        if(err) throw err;
-        console.log(result + "password");
+
         if(result.length){
-            console.log("Correct password exists");
-            response.sendFile(__dirname + '/client/game.html');
+            var checkPassword = "Select * from players WHERE Password = '" + pass + "';";
+            con.query(checkPassword, function(err, result){
+                if(err) throw err;
+                console.log(result + "password");
+                if(result.length){
+                    console.log("Correct password exists");
+                    response.sendFile(__dirname + '/client/game.html');
+                }
+                else{
+                    console.log("Incorrect Password!");
+                    response.sendFile(__dirname + '/client/index.html')
+                }
+            });
         }
-        else{
-            console.log("Incorrect Password!");
-            response.sendFile(__dirname + '/client/index.html')
-        }});
+        
+    
     else{
     console.log("user does not exist!");
     var SQL = "INSERT INTO players (Username, Password) VALUES ('"+ user +"','"+ pass+"');";
@@ -78,7 +83,8 @@ app.post('/auth' , urlencodedParser, function(request,response){
         console.log("first record installed");
         });
         response.sendFile(__dirname + '/client/game.html');
-    }
+    };
+});
 
 
 
@@ -107,4 +113,4 @@ socket.on('playingAgain', function(user,pass){
         password = pass;
     console.log(username + " " + password);
 
-});})})
+})});
