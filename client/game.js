@@ -10,7 +10,7 @@ $(document).ready(function(){
     collidesound.volume = 0.9;                                  //Setting the volume for the collide sound
     coinSound.volume = 0.9;                                     //Setting the volume for the coin sound
     gameEndSound.volume = 0.9;                                  //Setting the volume for the game end sound
-    //var socket = io();                                        //For socket.io
+    var socket = io();                                        //For socket.io
     var username;                                             //Storing the username 
     var password;                                             //Storing the password 
     var speed = 3;                                             //Initial speed of the obstacles
@@ -581,6 +581,53 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             gameEndSound.currentTime = 0;
             gameEndSound.play();
             sound = false;
+        }
+        let score = [
+            {name: "Player 1", score: 300},
+            {name: "Player 2", score: 370},
+            {name: "Player 3", score: 500},
+            {name: "Player 4", score: 430},
+            {name: "Player 5", score: 340},
+        ];
+        
+        function updateLeaderboardView() {
+            let leaderboard = document.getElementById("leaderboard");
+            leaderboard.innerHTML = "";
+        
+            scores.sort(function(a, b){ return b.score - a.score  });
+            let elements = []; // we'll need created elements to update colors later on
+            // create elements for each player
+            for(let i=0; i<scores.length; i++) {
+                let name = document.createElement("div");
+                let score = document.createElement("div");
+                name.classList.add("name");
+                score.classList.add("score");
+                name.innerText = scores[i].name;
+                score.innerText = scores[i].score;
+        
+                let scoreRow = document.createElement("div");
+                scoreRow.classList.add("row");
+                scoreRow.appendChild(name);
+                scoreRow.appendChild(score);
+                leaderboard.appendChild(scoreRow);
+        
+                elements.push(scoreRow);
+        
+            }
+        
+            let colors = ["gold", "silver", "#cd7f32"];
+            for(let i=0; i < 3; i++) {
+                elements[i].style.color = colors[i];
+            }
+        }
+        
+        updateLeaderboardView();
+        function randomize() {
+            for(var i=0; i<scores.length; i++) {
+                scores[i].score = Math.floor(Math.random() * (600 - 300 + 1)) + 300;
+            }
+            // when your data changes, call updateLeaderboardView
+            updateLeaderboardView();
         }
     }
 })
