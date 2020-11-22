@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+    <html>
+        <head>
+            <title> AquaRun </title>
+            <link rel="stylesheet" type="text/css" href="style1.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src = "https://cdn.socket.io/socket.io-1.4.5.js"></script>
+            <script type="text/javascript" src="game1.js"></script> 
+        </head>
+        <body> 
+            <header><h1> AquaRun </h1></header> 
+            <div id="playArea" >
+                <p id = "ScoreDetails"> 
+                    <span id='score'> Score : </span> 
+                </p> 
+                <div id = "racer"> </div>
+                <div id = "obstacles">  </div> 
+                <div id = "coin"> </div>
+                <div id = "fuel"> </div>
+            </div>
+
+            <div id="instructions">
+                <p> 
+                    INSTRUCTIONS: <br>
+                    Use the arrow keys to navigate and collect coind and fuel tokens and avoid obstacle<br>
+                </p>
+            </div>
+            
+            <button onclick="LoadLeaderboard()" id="leaderboard" class="button">View Leaderboard</button>
+            
+            <audio src="multimedia/Coin Collect.mp3" id="coinsound"></audio>
+            <audio src="multimedia/Collision.mp3" id="collidesound"></audio>
+            <audio src="multimedia/Game end.mp3" id="endsound"></audio>
+            <audio src="multimedia/backgroundmusic.mp3" id="background" autoplay loop></audio>
+
+
+        </body>
+    </html>
+      
