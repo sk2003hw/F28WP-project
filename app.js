@@ -93,12 +93,6 @@ app.post('/auth' , urlencodedParser, function(request,response){
         response.sendFile(__dirname + '/client/game.html');
     };
 });
-
-
-
-
-
-
 const port = process.env.PORT || 3000;
 const server = app.listen(port,function(){
     console.log('Listening on the port : ${port}');
@@ -123,5 +117,79 @@ socket.on('playingAgain', function(user,pass){
         password = pass;
     console.log(username + " " + password);
 
+<<<<<<< HEAD
 
+=======
+})
+
+socket.on('score', function(score,username){
+        
+    console.log(score);
+    
+    //To set the score
+    var setScore = "UPDATE players SET Current_Score = " + score + " WHERE Username = '" + username + "';"; 
+    connection.query(setScore, function (err, result) {
+        if (err) throw err;
+        console.log(result + " done");
+    });
+
+    //To check if the score is the highest score of the user yet yet
+    var getHighest = "SELECT Highest_Score from players WHERE Username = '" + username + "';";
+    connection.query(getHighest, function(err, result){ 
+        if (err) throw err;
+
+        //If it is the highest score yet
+        if(score > result[0].Highest_Score){
+            //We send the highest score yet with a message
+            socket.emit('highest',score, "Best score yet!");
+
+            //We update the table to store the highest score of the user as the new score
+            var newHighest = "UPDATE players SET Highest_Score = " + score + " WHERE Username = '" + username + "';"; 
+            connection.query(newHighest, function(err,res){
+               if (err) throw err;
+               console.log(" Highest updated" + res);
+            });
+        }
+
+        //If its not their highest yet
+        else {
+            socket.emit('highest',result[0].Highest_Score, " ");
+        }
+
+
+        //To send the top three scores globally of all time
+        connection.query("SELECT Highest_Score, Username from players ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
+            if (err) throw err;
+            console.log(result);
+            //If there are less than three entries in the table, there might be less than 3 results
+            //If there is only one result
+            if(result.length == 1)
+                socket.emit('bestYet', result[0].Username, result[0].Highest_Score);
+            //If there are two results
+            else if(result.length == 2)
+                socket.emit('bestYet', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score);
+            //If there are 3 results
+            else
+                socket.emit('bestYet', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score, result[2].Username, result[2].Highest_Score);            });
+
+        //To send the top three scores globally of all active users 
+        //Here, the active users are defined as users who have played the game in the last 90 minutes
+        connection.query("SELECT Highest_Score, Username from players WHERE timestamp > NOW() - INTERVAL 90 MINUTE ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
+            if (err) throw err;
+            console.log(result);
+            //If there are less than three entries in the table, there might be less than 3 results
+            //If there is only one result
+            if(result.length == 1)
+                socket.emit('bestNow', result[0].Username, result[0].Highest_Score);
+            //If there are two results
+            else if(result.length == 2)
+                socket.emit('bestNow', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score);
+            //If there are 3 results
+            else
+                socket.emit('bestNow', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score, result[2].Username, result[2].Highest_Score);
+        });
+    });
+
+// im soooooo gay rn like fuck my life
+>>>>>>> 8f01dc415fba7ddb3328c5516c7748f77515a803
 })});

@@ -20,7 +20,6 @@
     "socket.io": "^3.0.3",
     "underscore": "^1.2.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
