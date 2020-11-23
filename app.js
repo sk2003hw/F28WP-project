@@ -117,11 +117,7 @@ socket.on('playingAgain', function(user,pass){
         password = pass;
     console.log(username + " " + password);
 
-<<<<<<< HEAD
-
-=======
 })
-
 socket.on('score', function(score,username){
         
     console.log(score);
@@ -191,5 +187,4 @@ socket.on('score', function(score,username){
     });
 
 // im soooooo gay rn like fuck my life
->>>>>>> 8f01dc415fba7ddb3328c5516c7748f77515a803
 })});
