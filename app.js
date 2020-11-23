@@ -106,13 +106,15 @@ const server = app.listen(port,function(){
 });
 const io = require('socket.io')(server);
 io.sockets.on('connection', function(socket) {
-    console.log('socket connection')});
+    console.log('connecting to the socket')});
 
 
 
 socket.on("user_details", function(user,pass){
         username = user;
-        password = pass;
+        var key = crypto.createCipher('aes-128-cbc', 'password');
+        var encryptedPassword = key.update(pwd, 'utf8', 'hex')
+        encryptedPassword += key.final('hex');
 })
 socket.emit('user-details-client', user,pass);
 
@@ -120,5 +122,6 @@ socket.on('playingAgain', function(user,pass){
         username = user;
         password = pass;
     console.log(username + " " + password);
+
 
 })});
