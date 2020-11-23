@@ -37,8 +37,11 @@ con.connect(function(err) {
     })})
 
 app.post('/auth' , urlencodedParser, function(request,response){
+   
     username = request.body.user;
     password = request.body.pass;
+   
+   // USERNAME SANITIZATION
     username = username.replace("@","");
     username = username.replace(";","");
     username = username.replace("!","");
@@ -109,7 +112,30 @@ socket.on("user_details", function(user,pass){
         var key = crypto.createCipher('aes-128-cbc', 'password');
         var encryptedPassword = key.update(pwd, 'utf8', 'hex')
         encryptedPassword += key.final('hex');
-})
+      
+        //USERNAME SANITIZATION
+      username = username.replace(";","");
+      username = username.replace("!","");
+      username = username.replace("","");
+      username = username.replace("#","");
+      username = username.replace("$","");
+      username = username.replace("%","");
+      username = username.replace("^","");
+      username = username.replace("&","");
+      username = username.replace("*","");
+      username = username.replace("(","");
+      username = username.replace(")","");
+      username = username.replace("@","");
+      username = username.replace("=","");
+      username = username.replace("{","");
+      username = username.replace("}","");
+      username = username.replace(">","");
+      username = username.replace("<","");
+      username = username.replace(":","");
+
+});
+
+    })
 socket.emit('user-details-client', user,pass);
 
 socket.on('playingAgain', function(user,pass){
@@ -124,14 +150,14 @@ socket.on('score', function(score,username){
     
     //To set the score
     var setScore = "UPDATE players SET Current_Score = " + score + " WHERE Username = '" + username + "';"; 
-    connection.query(setScore, function (err, result) {
+    con.query(setScore, function (err, result) {
         if (err) throw err;
         console.log(result + " done");
     });
 
     //To check if the score is the highest score of the user yet yet
     var getHighest = "SELECT Highest_Score from players WHERE Username = '" + username + "';";
-    connection.query(getHighest, function(err, result){ 
+    con.query(getHighest, function(err, result){ 
         if (err) throw err;
 
         //If it is the highest score yet
@@ -154,7 +180,7 @@ socket.on('score', function(score,username){
 
 
         //To send the top three scores globally of all time
-        connection.query("SELECT Highest_Score, Username from players ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
+        con.query("SELECT Highest_Score, Username from players ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
             if (err) throw err;
             console.log(result);
             //If there are less than three entries in the table, there might be less than 3 results
@@ -170,7 +196,7 @@ socket.on('score', function(score,username){
 
         //To send the top three scores globally of all active users 
         //Here, the active users are defined as users who have played the game in the last 90 minutes
-        connection.query("SELECT Highest_Score, Username from players WHERE timestamp > NOW() - INTERVAL 90 MINUTE ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
+        con.query("SELECT Highest_Score, Username from players WHERE timestamp > NOW() - INTERVAL 90 MINUTE ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
             if (err) throw err;
             console.log(result);
             //If there are less than three entries in the table, there might be less than 3 results
@@ -186,5 +212,5 @@ socket.on('score', function(score,username){
         });
     });
 
-// im soooooo gay rn like fuck my life
-})});
+
+});
