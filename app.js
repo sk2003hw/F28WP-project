@@ -147,8 +147,9 @@ socket.on('playingAgain', function(user,pass){
 socket.on('score', function(score,username){
         
     console.log(score);
+
     
-    //To set the score
+    
     var setScore = "UPDATE players SET Current_Score = " + score + " WHERE Username = '" + username + "';"; 
     con.query(setScore, function (err, result) {
         if (err) throw err;
