@@ -1,4 +1,8 @@
-/* this file is used for the server part of the game*/
+/* this file is used for the server part of the game
+  The purpose of this file is to connect the server JS to the client JS.
+  The Databases are linked using MySQL.
+  SOCKET gives unique ID and link the client side and server side.
+*/
 const express = require('express');
 const app = express();
 const dataparser = require('body-parser'); 
