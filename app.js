@@ -67,23 +67,30 @@ app.post('/auth' , urlencodedParser, function(request,response){
     username = username.replace(":","");
     username = username.replace("<","");
 
+    // Password To Be Encrypted:
     var key = crypto.createCipher('aes-128-cbc', 'pass');
     encPassword = key.update(pass, 'utf8', 'hex')
     encPassword += key.final('hex');
 
+    // Checking if user data/ username exists:
     var checkusername = "SELECT * from players WHERE username = '" + user + "';";
     con.query(checkusername, function(err, result){
         if (err) throw err;
 
+   // If Username Exists:
         if(result.length){
             var checkPassword = "Select * from players WHERE Password = '" + encPassword + "';";
+        // Checking And Verifying Password Details:
             con.query(checkPassword, function(err, result){
                 if(err) throw err;
                 console.log(result + "password");
+                          // If Password Details Are Correct:
                 if(result.length){
                     console.log("Correct password exists");
+                         // Linking game.html page.
                     response.sendFile(__dirname + '/client/game.html');
                 }
+        //If Password is wrong , user is given information and restarted. 
                 else{
                     console.log("Incorrect Password!");
                     response.sendFile(__dirname + '/client/index.html')
@@ -91,7 +98,7 @@ app.post('/auth' , urlencodedParser, function(request,response){
             });
         }
         
-    
+    // CASE: If User Does Not Exist:
     else{
     console.log("user does not exist!");
     var SQL = "INSERT INTO players (Username, Password) VALUES ('"+ user +"','"+ pass+"');";
@@ -99,14 +106,20 @@ app.post('/auth' , urlencodedParser, function(request,response){
         if (err) throw err;
         console.log("first record installed");
         });
+       
+        //JUMPING TO GAME.HTML
         response.sendFile(__dirname + '/client/game.html');
     };
 });
-const port = process.env.PORT || 3000;
+
+// CONNECTING TO SERVER:
+const port = process.env.PORT || 3306;
 const server = app.listen(port,function(){
     console.log('Listening on the port : ${port}');
 
 });
+
+// 
 const io = require('socket.io')(server);
 io.sockets.on('connection', function(socket) {
     console.log('connecting to the socket')});
