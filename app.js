@@ -35,7 +35,15 @@ con.connect(function(err) {
         if (err) throw err;
         console.log("Created the Database");
     })})
-
+con.connect(function(err) {
+    if(err) throw err;
+    console.log("connected!")
+    var sql = "CREATE TABLE leaderboard (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))";
+    con.query(sql, function(err,result){
+        if(err) throw err;
+        console.log("created the table");
+    });
+    });
 app.post('/auth' , urlencodedParser, function(request,response){
     username = request.body.user;
     password = request.body.pass;
@@ -117,9 +125,6 @@ socket.on('playingAgain', function(user,pass){
         password = pass;
     console.log(username + " " + password);
 
-<<<<<<< HEAD
-
-=======
 })
 
 socket.on('score', function(score,username){
@@ -190,6 +195,5 @@ socket.on('score', function(score,username){
         });
     });
 
-// im soooooo gay rn like fuck my life
->>>>>>> 8f01dc415fba7ddb3328c5516c7748f77515a803
+
 })});
