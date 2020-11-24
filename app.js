@@ -1,12 +1,16 @@
-/* this file is used for the server part of the game*/
-const express = require('express');
-const app = express();
-const dataparser = require('body-parser'); 
-var username;
-var password;
-const urlencodedParser = dataparser();
-const path = require('path');
-const http = require('http');
+/* this file is used for the server part of the game
+  The purpose of this file is to connect the server JS to the client JS.
+  The Databases are linked using MySQL.
+  SOCKET gives unique ID and link the client side and server side.
+*/
+const express = require('express');        // To store Express Values.
+const app = express();                     // App link using Express.
+const dataparser = require('body-parser'); // To store the datapraser.
+var username;                              // Stores Username Information.
+var password;                              // Stores Password Information.
+const urlencodedParser = dataparser();     // Read the parser value.
+const path = require('path');              // Sets Path Data.
+const http = require('http');              // Socket Information.
 const socketIO = require('socket.io')
 var encPassword;
 const server = http.createServer((request, response) => {
@@ -15,11 +19,12 @@ const server = http.createServer((request, response) => {
         response.write("Restarting server");
         response.end();}});
 
+ // DIRECTORY LIST, INDEX.HTML LINK
 app.use(express.static('client'));
 app.get('/' , function(request,response) {
     response.sendFile({root: __dirname} + '/client/index.html')});
 
-
+// MYSQL DATABASE SERVER
 var mysql = require('mysql');
 const { urlencoded } = require('express');
 const { createConnection } = require('net');
@@ -28,6 +33,7 @@ var con = mysql.createConnection({
     user: "username",
     password: "password"
 });
+//AREA TO CONNECT TO DATABASE
 con.connect(function(err) {
     if (err) throw err;
     console.log("Connecting to the database")
@@ -45,8 +51,11 @@ con.connect(function(err) {
     });
     });
 app.post('/auth' , urlencodedParser, function(request,response){
+   
     username = request.body.user;
     password = request.body.pass;
+   
+   // USERNAME SANITIZATION AREA
     username = username.replace("@","");
     username = username.replace(";","");
     username = username.replace("!","");
@@ -66,23 +75,30 @@ app.post('/auth' , urlencodedParser, function(request,response){
     username = username.replace(":","");
     username = username.replace("<","");
 
+    // Password To Be Encrypted:
     var key = crypto.createCipher('aes-128-cbc', 'pass');
     encPassword = key.update(pass, 'utf8', 'hex')
     encPassword += key.final('hex');
 
+    // Checking if user data/ username exists:
     var checkusername = "SELECT * from players WHERE username = '" + user + "';";
     con.query(checkusername, function(err, result){
         if (err) throw err;
 
+   // If Username Exists:
         if(result.length){
             var checkPassword = "Select * from players WHERE Password = '" + encPassword + "';";
+        // Checking And Verifying Password Details:
             con.query(checkPassword, function(err, result){
                 if(err) throw err;
                 console.log(result + "password");
+                          // If Password Details Are Correct:
                 if(result.length){
                     console.log("Correct password exists");
+                         // Linking game.html page.
                     response.sendFile(__dirname + '/client/game.html');
                 }
+        //If Password is wrong , user is given information and restarted. 
                 else{
                     console.log("Incorrect Password!");
                     response.sendFile(__dirname + '/client/index.html')
@@ -90,7 +106,7 @@ app.post('/auth' , urlencodedParser, function(request,response){
             });
         }
         
-    
+    // CASE: If User Does Not Exist:
     else{
     console.log("user does not exist!");
     var SQL = "INSERT INTO players (Username, Password) VALUES ('"+ user +"','"+ pass+"');";
@@ -98,54 +114,86 @@ app.post('/auth' , urlencodedParser, function(request,response){
         if (err) throw err;
         console.log("first record installed");
         });
+       
+        //JUMPING TO GAME.HTML
         response.sendFile(__dirname + '/client/game.html');
     };
 });
-const port = process.env.PORT || 3000;
+
+// CONNECTING TO SERVER:
+const port = process.env.PORT || 3306;
 const server = app.listen(port,function(){
     console.log('Listening on the port : ${port}');
 
 });
+
+// Connecting to socket.io
+// We send and receive objects:
 const io = require('socket.io')(server);
 io.sockets.on('connection', function(socket) {
     console.log('connecting to the socket')});
 
 
-
+// This part gets username and pasword details as server from index.html
 socket.on("user_details", function(user,pass){
         username = user;
         var key = crypto.createCipher('aes-128-cbc', 'password');
         var encryptedPassword = key.update(pwd, 'utf8', 'hex')
         encryptedPassword += key.final('hex');
-})
-socket.emit('user-details-client', user,pass);
+      
+        //USERNAME SANITIZATION AREA
+      username = username.replace(";","");
+      username = username.replace("!","");
+      username = username.replace("","");
+      username = username.replace("#","");
+      username = username.replace("$","");
+      username = username.replace("%","");
+      username = username.replace("^","");
+      username = username.replace("&","");
+      username = username.replace("*","");
+      username = username.replace("(","");
+      username = username.replace(")","");
+      username = username.replace("@","");
+      username = username.replace("=","");
+      username = username.replace("{","");
+      username = username.replace("}","");
+      username = username.replace(">","");
+      username = username.replace("<","");
+      username = username.replace(":","");
 
+});
+
+    })
+
+// Sending information to client side of JS.
+    socket.emit('user-details-client', user,pass);
+// RESET AREA:
 socket.on('playingAgain', function(user,pass){
         username = user;
         password = pass;
     console.log(username + " " + password);
 
 })
-
 socket.on('score', function(score,username){
         
     console.log(score);
+
     
-    //To set the score
+    
     var setScore = "UPDATE players SET Current_Score = " + score + " WHERE Username = '" + username + "';"; 
-    connection.query(setScore, function (err, result) {
+    con.query(setScore, function (err, result) {
         if (err) throw err;
         console.log(result + " done");
     });
 
-    //To check if the score is the highest score of the user yet yet
+    //To check if the score is highest alltogether.
     var getHighest = "SELECT Highest_Score from players WHERE Username = '" + username + "';";
-    connection.query(getHighest, function(err, result){ 
+    con.query(getHighest, function(err, result){ 
         if (err) throw err;
 
-        //If it is the highest score yet
+        //If it is the highest score alltogether
         if(score > result[0].Highest_Score){
-            //We send the highest score yet with a message
+            //We send the highest score information:
             socket.emit('highest',score, "Best score yet!");
 
             //We update the table to store the highest score of the user as the new score
@@ -162,24 +210,24 @@ socket.on('score', function(score,username){
         }
 
 
-        //To send the top three scores globally of all time
-        connection.query("SELECT Highest_Score, Username from players ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
+        //SENDING TOP 3 SCORES OF ALLTOGETHER
+        con.query("SELECT Highest_Score, Username from players ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
             if (err) throw err;
             console.log(result);
             //If there are less than three entries in the table, there might be less than 3 results
-            //If there is only one result
+            //If there is only one result:
             if(result.length == 1)
                 socket.emit('bestYet', result[0].Username, result[0].Highest_Score);
-            //If there are two results
+            //If there are two results:
             else if(result.length == 2)
                 socket.emit('bestYet', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score);
-            //If there are 3 results
+            //If there are 3 results:
             else
                 socket.emit('bestYet', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score, result[2].Username, result[2].Highest_Score);            });
 
         //To send the top three scores globally of all active users 
         //Here, the active users are defined as users who have played the game in the last 90 minutes
-        connection.query("SELECT Highest_Score, Username from players WHERE timestamp > NOW() - INTERVAL 90 MINUTE ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
+        con.query("SELECT Highest_Score, Username from players WHERE timestamp > NOW() - INTERVAL 90 MINUTE ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
             if (err) throw err;
             console.log(result);
             //If there are less than three entries in the table, there might be less than 3 results
@@ -196,4 +244,8 @@ socket.on('score', function(score,username){
     });
 
 
+<<<<<<< HEAD
 })});
+=======
+});
+>>>>>>> bd4c625730f785ee2b966d3e770c08b95d7490a1
