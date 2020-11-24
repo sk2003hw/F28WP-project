@@ -3,14 +3,14 @@
   The Databases are linked using MySQL.
   SOCKET gives unique ID and link the client side and server side.
 */
-const express = require('express');
-const app = express();
-const dataparser = require('body-parser'); 
-var username;
-var password;
-const urlencodedParser = dataparser();
-const path = require('path');
-const http = require('http');
+const express = require('express');        // To store Express Values.
+const app = express();                     // App link using Express.
+const dataparser = require('body-parser'); // To store the datapraser.
+var username;                              // Stores Username Information.
+var password;                              // Stores Password Information.
+const urlencodedParser = dataparser();     // Read the parser value.
+const path = require('path');              // Sets Path Data.
+const http = require('http');              // Socket Information.
 const socketIO = require('socket.io')
 var encPassword;
 const server = http.createServer((request, response) => {
@@ -19,6 +19,7 @@ const server = http.createServer((request, response) => {
         response.write("Restarting server");
         response.end();}});
 
+ // DIRECTORY LIST
 app.use(express.static('client'));
 app.get('/' , function(request,response) {
     response.sendFile({root: __dirname} + '/client/index.html')});
