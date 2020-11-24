@@ -178,14 +178,14 @@ socket.on('score', function(score,username){
         console.log(result + " done");
     });
 
-    //To check if the score is the highest score of the user yet yet
+    //To check if the score is highest alltogether.
     var getHighest = "SELECT Highest_Score from players WHERE Username = '" + username + "';";
     con.query(getHighest, function(err, result){ 
         if (err) throw err;
 
-        //If it is the highest score yet
+        //If it is the highest score alltogether
         if(score > result[0].Highest_Score){
-            //We send the highest score yet with a message
+            //We send the highest score information:
             socket.emit('highest',score, "Best score yet!");
 
             //We update the table to store the highest score of the user as the new score
@@ -202,7 +202,7 @@ socket.on('score', function(score,username){
         }
 
 
-        //To send the top three scores globally of all time
+        //SENDING TOP 3 SCORES OF ALL TIME:
         con.query("SELECT Highest_Score, Username from players ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
             if (err) throw err;
             console.log(result);
