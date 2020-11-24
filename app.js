@@ -19,12 +19,12 @@ const server = http.createServer((request, response) => {
         response.write("Restarting server");
         response.end();}});
 
- // DIRECTORY LIST
+ // DIRECTORY LIST, INDEX.HTML LINK
 app.use(express.static('client'));
 app.get('/' , function(request,response) {
     response.sendFile({root: __dirname} + '/client/index.html')});
 
-
+// MYSQL DATABASE SERVER
 var mysql = require('mysql');
 const { urlencoded } = require('express');
 const { createConnection } = require('net');
@@ -33,6 +33,7 @@ var con = mysql.createConnection({
     user: "username",
     password: "password"
 });
+//AREA TO CONNECT TO DATABASE
 con.connect(function(err) {
     if (err) throw err;
     console.log("Connecting to the database")
@@ -40,13 +41,13 @@ con.connect(function(err) {
         if (err) throw err;
         console.log("Created the Database");
     })})
-
+// This is to collect user infomration and authorization from index.html file.
 app.post('/auth' , urlencodedParser, function(request,response){
    
     username = request.body.user;
     password = request.body.pass;
    
-   // USERNAME SANITIZATION
+   // USERNAME SANITIZATION AREA
     username = username.replace("@","");
     username = username.replace(";","");
     username = username.replace("!","");
