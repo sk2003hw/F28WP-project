@@ -119,20 +119,21 @@ const server = app.listen(port,function(){
 
 });
 
-// 
+// Connecting to socket.io
+// We send and receive objects:
 const io = require('socket.io')(server);
 io.sockets.on('connection', function(socket) {
     console.log('connecting to the socket')});
 
 
-
+// This part gets username and pasword details as server from index.html
 socket.on("user_details", function(user,pass){
         username = user;
         var key = crypto.createCipher('aes-128-cbc', 'password');
         var encryptedPassword = key.update(pwd, 'utf8', 'hex')
         encryptedPassword += key.final('hex');
       
-        //USERNAME SANITIZATION
+        //USERNAME SANITIZATION AREA
       username = username.replace(";","");
       username = username.replace("!","");
       username = username.replace("","");
@@ -155,8 +156,10 @@ socket.on("user_details", function(user,pass){
 });
 
     })
-socket.emit('user-details-client', user,pass);
 
+// Sending information to client side of JS.
+    socket.emit('user-details-client', user,pass);
+// RESET AREA:
 socket.on('playingAgain', function(user,pass){
         username = user;
         password = pass;
