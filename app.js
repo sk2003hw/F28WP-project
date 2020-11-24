@@ -202,18 +202,18 @@ socket.on('score', function(score,username){
         }
 
 
-        //SENDING TOP 3 SCORES OF ALL TIME:
+        //SENDING TOP 3 SCORES OF ALLTOGETHER
         con.query("SELECT Highest_Score, Username from players ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
             if (err) throw err;
             console.log(result);
             //If there are less than three entries in the table, there might be less than 3 results
-            //If there is only one result
+            //If there is only one result:
             if(result.length == 1)
                 socket.emit('bestYet', result[0].Username, result[0].Highest_Score);
-            //If there are two results
+            //If there are two results:
             else if(result.length == 2)
                 socket.emit('bestYet', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score);
-            //If there are 3 results
+            //If there are 3 results:
             else
                 socket.emit('bestYet', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score, result[2].Username, result[2].Highest_Score);            });
 
