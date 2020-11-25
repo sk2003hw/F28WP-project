@@ -582,6 +582,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             gameEndSound.play();
             sound = false;
         }
+        operation.replace("scoreboard.html")
         let score = [
             {name: "Player 1", score: 300},
             {name: "Player 2", score: 370},

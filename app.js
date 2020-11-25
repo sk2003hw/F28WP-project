@@ -23,7 +23,12 @@ const server = http.createServer((request, response) => {
 app.use(express.static('client'));
 app.get('/' , function(request,response) {
     response.sendFile({root: __dirname} + '/client/index.html')});
+app.get('/api/scores', function(request, response){
 
+var scores = Array();
+response.JSON(scores);
+response.end;
+});
 // MYSQL DATABASE SERVER
 var mysql = require('mysql');
 const { urlencoded } = require('express');
@@ -81,15 +86,15 @@ app.post('/auth' , urlencodedParser, function(request,response){
     encPassword += key.final('hex');
 
     // Checking if user data/ username exists:
-    var checkusername = "SELECT * from players WHERE username = '" + user + "';";
-    con.query(checkusername, function(err, result){
+    var checkingusername = "SELECT * from players WHERE username = '" + user + "';";
+    con.query(checkingusername, function(err, result){
         if (err) throw err;
 
    // If Username Exists:
         if(result.length){
-            var checkPassword = "Select * from players WHERE Password = '" + encPassword + "';";
+            var checkingPassword = "Select * from players WHERE Password = '" + encPassword + "';";
         // Checking And Verifying Password Details:
-            con.query(checkPassword, function(err, result){
+            con.query(checkingPassword, function(err, result){
                 if(err) throw err;
                 console.log(result + "password");
                           // If Password Details Are Correct:
@@ -132,9 +137,9 @@ const server = app.listen(port,function(){
 const io = require('socket.io')(server);
 io.sockets.on('connection', function(socket) {
     console.log('connecting to the socket')});
-
-
-// This part gets username and pasword details as server from index.html
+scoreboard[socket.ID] = player;
+scoreboard[socket.ID] = socket;
+// This part gets username and pasword details as a server from index.html
 socket.on("user_details", function(user,pass){
         username = user;
         var key = crypto.createCipher('aes-128-cbc', 'password');
@@ -166,20 +171,9 @@ socket.on("user_details", function(user,pass){
     })
 
 // Sending information to client side of JS.
-    socket.emit('user-details-client', user,pass);
-// RESET AREA:
-socket.on('playingAgain', function(user,pass){
-        username = user;
-        password = pass;
-    console.log(username + " " + password);
-
-})
-socket.on('score', function(score,username){
-        
+socket.emit('user-details-client', user,pass);
+io.socket.on('score', function(score,username){     
     console.log(score);
-
-    
-    
     var setScore = "UPDATE players SET Current_Score = " + score + " WHERE Username = '" + username + "';"; 
     con.query(setScore, function (err, result) {
         if (err) throw err;
@@ -187,8 +181,8 @@ socket.on('score', function(score,username){
     });
 
     //To check if the score is highest alltogether.
-    var getHighest = "SELECT Highest_Score from players WHERE Username = '" + username + "';";
-    con.query(getHighest, function(err, result){ 
+    var gettingHighest = "SELECT Highest_Score from players WHERE Username = '" + username + "';";
+    con.query(gettingHighest, function(err, result){ 
         if (err) throw err;
 
         //If it is the highest score alltogether
@@ -197,8 +191,8 @@ socket.on('score', function(score,username){
             socket.emit('highest',score, "Best score yet!");
 
             //We update the table to store the highest score of the user as the new score
-            var newHighest = "UPDATE players SET Highest_Score = " + score + " WHERE Username = '" + username + "';"; 
-            connection.query(newHighest, function(err,res){
+            var newHighestscore = "UPDATE players SET Highest_Score = " + score + " WHERE Username = '" + username + "';"; 
+            con.query(newHighestscore, function(err,res){
                if (err) throw err;
                console.log(" Highest updated" + res);
             });
@@ -244,8 +238,4 @@ socket.on('score', function(score,username){
     });
 
 
-<<<<<<< HEAD
-})});
-=======
-});
->>>>>>> bd4c625730f785ee2b966d3e770c08b95d7490a1
+})
