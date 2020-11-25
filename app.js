@@ -204,7 +204,7 @@ io.socket.on('score', function(score,username){
         }
 
 
-        //SENDING TOP 3 SCORES OF ALLTOGETHER
+        //SENDING TOP 3 SCORES OF ALLTOGETHER:
         con.query("SELECT Highest_Score, Username from players ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
             if (err) throw err;
             console.log(result);
@@ -235,11 +235,5 @@ io.socket.on('score', function(score,username){
             else
                 socket.emit('bestNow', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score, result[2].Username, result[2].Highest_Score);
         });
+   
     });
-
-
-<<<<<<< HEAD
-})});
-=======
-})
->>>>>>> e368a597d53714dd7f8b54af080e18a18c1115df
