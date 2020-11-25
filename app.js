@@ -140,7 +140,7 @@ io.sockets.on('connection', function(socket) {
 scoreboard[socket.ID] = player;
 scoreboard[socket.ID] = socket;
 
-socket.on('login' , function(pseudoname))
+socket.on('login' , function(pseudoname){
 
 
-})
+})});
