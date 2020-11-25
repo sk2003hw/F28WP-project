@@ -131,7 +131,7 @@ const server = app.listen(port,function(){
     console.log('Listening on the port : ${port}');
 
 });
-
+const server = http.createServer
 // Connecting to socket.io
 // We send and receive objects:
 const io = require('socket.io')(server);
