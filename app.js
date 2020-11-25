@@ -193,4 +193,7 @@ socket.on('login' , function(pseudoname){
         });
    
     });
+<<<<<<< HEAD
+>>>>>>> 68a3c78c086354932af2d6484d9c6d06652fa5f5
+=======
 >>>>>>> 68a3c78c086354932af2d6484d9c6d06652fa5f5
