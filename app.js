@@ -185,5 +185,5 @@ socket.on('score', function(score,username){
         });
     });
 
-// im soooooo gay rn like fuck my life
+
 })});
