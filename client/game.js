@@ -10,7 +10,7 @@ $(document).ready(function(){
     collidesound.volume = 0.9;                                  //Setting the volume for the collide sound
     coinSound.volume = 0.9;                                     //Setting the volume for the coin sound
     gameEndSound.volume = 0.9;                                  //Setting the volume for the game end sound
-    var socket = io();                                        //For socket.io
+    // var socket = io();                                        //For socket.io
     var username;                                             //Storing the username 
     var password;                                             //Storing the password 
     var speed = 3;                                             //Initial speed of the obstacles
