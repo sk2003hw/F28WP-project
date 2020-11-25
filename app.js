@@ -10,7 +10,7 @@ var username;                              // Stores Username Information.
 var password;                              // Stores Password Information.
 const urlencodedParser = dataparser();     // Read the parser value.
 const path = require('path');              // Sets Path Data.
-const http = require('http');              // Socket Information.
+const http = require('http');              // Socket Information.               
 const socketIO = require('socket.io')
 var encPassword;
 const server = http.createServer((request, response) => {
@@ -139,61 +139,4 @@ io.sockets.on('connection', function(socket) {
     console.log('connecting to the socket')});
 scoreboard[socket.ID] = player;
 scoreboard[socket.ID] = socket;
-
-<<<<<<< HEAD
-socket.on('login' , function(pseudoname){
-
-
-})});
-=======
-            //We update the table to store the highest score of the user as the new score
-            var newHighestscore = "UPDATE players SET Highest_Score = " + score + " WHERE Username = '" + username + "';"; 
-            con.query(newHighestscore, function(err,res){
-               if (err) throw err;
-               console.log(" Highest updated" + res);
-            });
-        }
-
-        //If its not their highest yet
-        else {
-            socket.emit('highest',result[0].Highest_Score, " ");
-        }
-
-
-        //SENDING TOP 3 SCORES OF ALLTOGETHER:
-        con.query("SELECT Highest_Score, Username from players ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
-            if (err) throw err;
-            console.log(result);
-            //If there are less than three entries in the table, there might be less than 3 results
-            //If there is only one result:
-            if(result.length == 1)
-                socket.emit('bestYet', result[0].Username, result[0].Highest_Score);
-            //If there are two results:
-            else if(result.length == 2)
-                socket.emit('bestYet', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score);
-            //If there are 3 results:
-            else
-                socket.emit('bestYet', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score, result[2].Username, result[2].Highest_Score);            });
-
-        //To send the top three scores globally of all active users 
-        //Here, the active users are defined as users who have played the game in the last 90 minutes
-        con.query("SELECT Highest_Score, Username from players WHERE timestamp > NOW() - INTERVAL 90 MINUTE ORDER BY Highest_Score DESC LIMIT 3", function(err, result){
-            if (err) throw err;
-            console.log(result);
-            //If there are less than three entries in the table, there might be less than 3 results
-            //If there is only one result
-            if(result.length == 1)
-                socket.emit('bestNow', result[0].Username, result[0].Highest_Score);
-            //If there are two results
-            else if(result.length == 2)
-                socket.emit('bestNow', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score);
-            //If there are 3 results
-            else
-                socket.emit('bestNow', result[0].Username, result[0].Highest_Score, result[1].Username, result[1].Highest_Score, result[2].Username, result[2].Highest_Score);
-        });
-   
-    });
-<<<<<<< HEAD
->>>>>>> 68a3c78c086354932af2d6484d9c6d06652fa5f5
-=======
->>>>>>> 68a3c78c086354932af2d6484d9c6d06652fa5f5
+});
