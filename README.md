@@ -9,7 +9,7 @@ But do be careful to avoid the incoming obstacles and do not forget to collect t
 Players can login and se their score.
 </h4>
 INSTRUCTIONS: <br>
- Use the up or down arrow keys to navigate and avoid obstacle and press any key collect coins and fuel tokens
+ Use the up or down arrow keys to navigate and avoid obstacle and press any key to collect coins and fuel tokens
 
 # Draft Image
 ![alt text](https://github.com/F28WP-Dubai-nibbleByte/F28WP-project/blob/master/PROJECT-1.jpg?raw=true)
