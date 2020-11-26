@@ -23,12 +23,12 @@ const server = http.createServer((request, response) => {
 app.use(express.static('client'));
 app.get('/' , function(request,response) {
     response.sendFile({root: __dirname} + '/client/index.html')});
-app.get('/api/scores/', function(request, response){
+/*app.get('/api/scores/', function(request, response){
     const Array = require('./scores')
 var scores = Array();
 response.JSON(scores);
 response.end;
-});
+}); */
 // MYSQL DATABASE SERVER
 var mysql = require('mysql');
 const { urlencoded } = require('express');
