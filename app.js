@@ -150,7 +150,10 @@ io.sockets.on('connection', function(socket) {
         password = pass;
         console.log(username + " " + password);
     });
+   
+   /*
     //updating the current score of the username in the table
+    
     socket.on('score', function(score,username){
         console.log(score);
     //for setting the score
@@ -179,5 +182,6 @@ io.sockets.on('connection', function(socket) {
         else {
             socket.emit('highest',result[0].Highest_Score, " ");
         }
-
-    })})})
+    })})*/})
+    
+    
