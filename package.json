@@ -22,8 +22,10 @@
     "underscore": "^1.2.1"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/F28WP-Dubai-nibbleByte/F28WP-project.git"
