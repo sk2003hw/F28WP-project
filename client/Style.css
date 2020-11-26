@@ -1,7 +1,6 @@
 /*
 This file is used for assigning styles for attributes used in the game. 
 The multimedia we have used has been referenced below in the document.
-
 The sounds have been taken from: 
 1.https://www.zapsplat.com/sound-effect-category/game-sounds/
 2.https://www.youtube.com/watch?v=PMENdpCGF3U&list=LL&index=5
@@ -168,19 +167,20 @@ span {
 	left:100px;	
 }
 
-/*To set the style of the element of id- Start*/
+/*To set the style of the element of id- Start */
 #Start {
 	background-color:deepskyblue;
 	font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif; 
 	font-size: 25px;
 	width: 200px;
 	padding: 10px;
-	position: absolute/*relative*/;
+	position: absolute;
 	left : 500px;
 	bottom : 1070px;
 	color : rgb(17, 17, 17);
 	font-weight: bold; 
 }
+
 
 /*To set the style of the heading element of id- racer
 reference to the image- https://www.freepik.com/vectors/water Water vector created by macrovector - www.freepik.com 
@@ -261,7 +261,7 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
 	display: block;
 	position: absolute;
     
-} */
+} 
 
 #obstacle1 {
 	background-image: url(multimedia/obstacle.png);
@@ -275,10 +275,10 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
     bottom: 300px;
 	left: 1000px;	
 }
-
+*/
 /*To set the style of the heading element of id- coin
 reference to the image- https://pngtree.com/freepng/cartoon-coin_161124.html
-*/
+
 #coin1{
 	background-image: url(multimedia/coin.png);
 	background-position: center center;
@@ -294,7 +294,7 @@ reference to the image- https://pngtree.com/freepng/cartoon-coin_161124.html
 
 /*To set the style of the heading element of id- fuel
 reference to the image- https://www.iconfinder.com/icons/2329874/container_petrol_canister_jerrycan_fuel_gallon_cartoon_icon
-*/
+
 #fuel1{
 	background-image: url(multimedia/fueltoken.png);
 	background-position: center center;
@@ -315,8 +315,8 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
 	text-align: center;
 	font-size: 30px;
 	color: #047ac9;      
-	font-weight: bold; */
-}
+	font-weight: bold; 
+} 
 /*-------------------------------------------------------------*/
 /*
 #racer2 {
@@ -331,7 +331,7 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
 	position: absolute;
     
 }
-*/
+
 #obstacle2 {
 	background-image: url(multimedia/obstacle.png);
 	background-position: center center;
@@ -344,10 +344,10 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
     bottom: 770px;
 	left: 1000px;	
 }
-
+*/
 /*To set the style of the heading element of id- coin
 reference to the image- https://pngtree.com/freepng/cartoon-coin_161124.html
-*/
+
 #coin2{
 	background-image: url(multimedia/coin.png);
 	background-position: center center;
@@ -363,7 +363,7 @@ reference to the image- https://pngtree.com/freepng/cartoon-coin_161124.html
 
 /*To set the style of the heading element of id- fuel
 reference to the image- https://www.iconfinder.com/icons/2329874/container_petrol_canister_jerrycan_fuel_gallon_cartoon_icon
-*/
+
 #fuel2{
 	background-image: url(multimedia/fueltoken.png);
 	background-position: center center;
@@ -377,7 +377,7 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
 	left: 1000px;
 }
 
-/*To set the style of the elements of ids- score and scoretext
+To set the style of the elements of ids- score and scoretext
 #score2, #scoretext2{
 	padding: 20px;
 	font-family: scorefont; 
@@ -394,5 +394,4 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
 	color: #047ac9;      
 	font-weight: bold;
 }
-
 */
