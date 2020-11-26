@@ -5,8 +5,10 @@
 */
 const express = require('express');        // To store Express Values.
 const app = express();                     // Linking the app using Express..
+const dataparser = require('body-parser'); // To store the datapraser.
 var username;                              // Stores Username Information.
 var password;                              // Stores Password Information.
+const urlencodedParser = dataparser();     // Read the parser value.
 const path = require('path');              // Sets the Data path.
 const http = require('http');              // Socket Information.             
 const socketio = require('socket.io')
@@ -29,10 +31,6 @@ var con = mysql.createConnection({
     user: "username",
     password: "password"
 });
-// CONNECTING TO SERVER:
-const port = process.env.PORT || 3306;
-server = app.listen(port,function(){
-    console.log('Listening on the port : ${port}');
 //AREA TO CONNECT TO DATABASE
 con.connect(function(err) {
     if (err) throw err;
@@ -110,6 +108,12 @@ app.post('/auth' , urlencodedParser, function(request,response){
     };
 });
 });
+
+// CONNECTING TO SERVER:
+const port = process.env.PORT || 3306;
+server = app.listen(port,function(){
+    console.log('Listening on the port : ${port}');
+
 // Connecting to socket.io
 // We send and receive objects: 
 const io = require('socket.io')(server);
