@@ -249,7 +249,7 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
 	left: 1000px;
 }
 /*-------------------------------------------------------------*/
-
+/*
 #racer1 {
 	background-image: url(multimedia/racer.png);
     background-position: center center;
@@ -261,7 +261,7 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
 	display: block;
 	position: absolute;
     
-}
+} */
 
 #obstacle1 {
 	background-image: url(multimedia/obstacle.png);
@@ -308,17 +308,17 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
 	left: 1000px;
 }
 
-/*To set the style of the elements of ids- score and scoretext*/
+/*To set the style of the elements of ids- score and scoretext
 #score1, #scoretext1{
 	padding: 20px;
 	font-family: scorefont; 
 	text-align: center;
 	font-size: 30px;
 	color: #047ac9;      
-	font-weight: bold;
+	font-weight: bold; */
 }
 /*-------------------------------------------------------------*/
-
+/*
 #racer2 {
 	background-image: url(multimedia/racer.png);
     background-position: center center;
@@ -331,7 +331,7 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
 	position: absolute;
     
 }
-
+*/
 #obstacle2 {
 	background-image: url(multimedia/obstacle.png);
 	background-position: center center;
@@ -377,7 +377,7 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
 	left: 1000px;
 }
 
-/*To set the style of the elements of ids- score and scoretext*/
+/*To set the style of the elements of ids- score and scoretext
 #score2, #scoretext2{
 	padding: 20px;
 	font-family: scorefont; 
@@ -395,4 +395,4 @@ reference to the image- https://www.iconfinder.com/icons/2329874/container_petro
 	font-weight: bold;
 }
 
-
+/*
