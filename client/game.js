@@ -26,10 +26,12 @@ $(document).ready(function(){
     var fuelAdded = false;                                  //To check if the fuel token has been added
     var obstacleAdded = false;                              //To check if the obstacle has been added
     
-//For player 2--------------------------------------------------------------------
+/*For player 2--------------------------------------------------------------------
     var score1 = $('#score1');                               //Selector for score
     var scoreval1 = 0;                                       //Initial Score 
-    var hasAvoidedObstacle1 = false;                         //To check if the racer avoided the obstacle or not                               
+    var hasAvoidedObstacle1 = false;                         //To check if the racer avoided the obstacle or not                             
+    var obstacleAdded1 = false;                              //To check if the fuel token has been added
+    var racer1 = $('#racer1');                               //Selector for racer-2
     var hascollectedcoin1 = false;                           //To check if racer has collected a coin
     var caughtfuel1 = false;                                 //To check if racer has collected a fuel token
     var obstacle_current_position1 = 0;                      //Current position of the obstacle
@@ -37,12 +39,10 @@ $(document).ready(function(){
     var coin_current_position1 = 0;                          //Current position of the coin
     var coinAdded1 = false;                                  //To check if the coin has been added
     var fuelAdded1 = false;                                  //To check if the fuel token has been added
-    var obstacleAdded1 = false;                              //To check if the fuel token has been added
-    var racer1 = $('#racer1');                               //Selector for racer-2
 
 //------------------------------------------------------------------------
 
-//For player 3--------------------------------------------------------------------
+For player 3--------------------------------------------------------------------
 var score2 = $('#score2');                               //Selector for score
 var scoreval2 = 0;                                       //Initial Score 
 var hasAvoidedObstacle2 = false;                         //To check if the racer avoided the obstacle or not                               
@@ -55,7 +55,7 @@ var coinAdded2 = false;                                  //To check if the coin 
 var fuelAdded2 = false;                                  //To check if the fuel token has been added
 var obstacleAdded2 = false;                              //To check if the fuel token has been added
 var racer2 = $('#racer2');                               //Selector for racer-3
-
+*/
 //------------------------------------------------------------------------
 
     //Runs indefinitely until the game is over   
@@ -65,7 +65,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
         var obstacle = $('#obstacle');                               //Selector for obstacle                                       
         obstacle_current_position = parseInt(obstacle.css('left'));  //Initialising the position of the obstacle
         var racer_top_pos = parseInt(racer.css('top'));              //Initialising the position of the racer          
-       
+  /*     
         // For player 2 ------------------------------------------
 
         var obstacle1 = $('#obstacle1');                               //Selector for obstacle                                       
@@ -81,7 +81,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
          var racer_top_pos2 = parseInt(racer2.css('top'));              //Initialising the position of the racer 
          
         //--------------------------------------
-
+*/
 
         //Add the obstacle to the playArea if it has not been added yet (To make sure obstacle is added)
         if(obstacleAdded === false) {
@@ -132,7 +132,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             }
                 
         } 
-
+/*
         //For player-2  ---------------------------------------------------
 
         //Add the obstacle to the playArea if it has not been added yet (To make sure obstacle is added)
@@ -278,7 +278,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
         //-------------------------------------------------------------
 
         //For player-3  ---------------------------------------------------
-
+        /*
         //Add the obstacle to the playArea if it has not been added yet (To make sure obstacle is added)
         if(obstacleAdded2 === false) {
            gamecourse.append("<div id = 'obstacle2'> </div>");
@@ -326,7 +326,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             }
                 
         } 
-
+        
         if(scoreval2>2){
 
             var coin2 = $('#coin2');                                                  //Selector for the coin
@@ -420,7 +420,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
         obstacle2.css('left', obstacle_current_position2 - speed); 
        
         //-------------------------------------------------------------
-        
+     */   
         //For player-1--------------------------------------------------
         //Add the coin when the score is greater than 1
         if(scoreval>1){
@@ -536,7 +536,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
         
     });
 
-    //To move the racer-2 up/down when the up/down arrow keys are pressed
+    /*To move the racer-2 up/down when the up/down arrow keys are pressed
     $(document).on('keydown', function(e){
         var key = e.keyCode;
         
@@ -566,7 +566,7 @@ var racer2 = $('#racer2');                               //Selector for racer-3
         }
         
     });
-    
+    */
     //Game over function to be executed when the game is over
     function game_over() {
         clearInterval(gameBegin);
@@ -582,9 +582,10 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             gameEndSound.play();
             sound = false;
         }   
-        }
-    class Scores{
-        constructor(name, score) {
-        this.name = name;
-        this.score = score;
-    }}})
+   }
+})
+   // class Scores{
+     //   constructor(name, score) {
+       // this.name = name;
+        //this.score = score;
+    
