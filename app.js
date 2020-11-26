@@ -4,40 +4,35 @@
   SOCKET gives unique ID and link the client side and server side.
 */
 const express = require('express');        // To store Express Values.
-const app = express();                     // App link using Express.
-const dataparser = require('body-parser'); // To store the datapraser.
+const app = express();                     // Linking the app using Express..
 var username;                              // Stores Username Information.
 var password;                              // Stores Password Information.
-const urlencodedParser = dataparser();     // Read the parser value.
-const path = require('path');              // Sets Path Data.
-const http = require('http');              // Socket Information.               
-const socketIO = require('socket.io')
+const path = require('path');              // Sets the Data path.
+const http = require('http');              // Socket Information.             
+const socketio = require('socket.io')
 var encPassword;
 const server = http.createServer((request, response) => {
     if (request.url === '/') {
         response.write("Hello");
         response.write("Restarting server");
         response.end();}});
-
  // DIRECTORY LIST, INDEX.HTML LINK
 app.use(express.static('client'));
 app.get('/' , function(request,response) {
     response.sendFile({root: __dirname} + '/client/index.html')});
-app.get('/api/scores/', function(request, response){
-    const Array = require('./scores')
-var scores = Array();
-response.JSON(scores);
-response.end;
-});
 // MYSQL DATABASE SERVER
 var mysql = require('mysql');
-const { urlencoded } = require('express');
+const { urlencoded, request, response } = require('express');
 const { createConnection } = require('net');
 var con = mysql.createConnection({
     host: "localhost",
     user: "username",
     password: "password"
 });
+// CONNECTING TO SERVER:
+const port = process.env.PORT || 3306;
+server = app.listen(port,function(){
+    console.log('Listening on the port : ${port}');
 //AREA TO CONNECT TO DATABASE
 con.connect(function(err) {
     if (err) throw err;
@@ -46,15 +41,6 @@ con.connect(function(err) {
         if (err) throw err;
         console.log("Created the Database");
     })})
-con.connect(function(err) {
-    if(err) throw err;
-    console.log("connected!")
-    var sql = "CREATE TABLE leaderboard (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))";
-    con.query(sql, function(err,result){
-        if(err) throw err;
-        console.log("created the table");
-    });
-    });
 app.post('/auth' , urlencodedParser, function(request,response){
    
     username = request.body.user;
@@ -81,9 +67,9 @@ app.post('/auth' , urlencodedParser, function(request,response){
     username = username.replace("<","");
 
     // Password To Be Encrypted:
-    var key = crypto.createCipher('aes-128-cbc', 'pass');
-    encPassword = key.update(pass, 'utf8', 'hex')
-    encPassword += key.final('hex');
+    var pass = crypto.createCipher('aes-128-cbc', 'pass');
+    encPassword = pass.update(pass, 'utf8', 'hex')
+    encPassword += pass.final('hex');
 
     // Checking if user data/ username exists:
     var checkingusername = "SELECT * from players WHERE username = '" + user + "';";
@@ -119,24 +105,79 @@ app.post('/auth' , urlencodedParser, function(request,response){
         if (err) throw err;
         console.log("first record installed");
         });
-       
         //JUMPING TO GAME.HTML
         response.sendFile(__dirname + '/client/game.html');
     };
 });
-
-// CONNECTING TO SERVER:
-const port = process.env.PORT || 3306;
-const server = app.listen(port,function(){
-    console.log('Listening on the port : ${port}');
-
 });
-const server = http.createServer
 // Connecting to socket.io
-// We send and receive objects:
+// We send and receive objects: 
 const io = require('socket.io')(server);
 io.sockets.on('connection', function(socket) {
-    console.log('connecting to the socket')});
-scoreboard[socket.ID] = player;
-scoreboard[socket.ID] = socket;
-});
+    console.log('socket.io')});
+    socket.on("user_details", function(user,pass){
+        username = user;
+        //Encrypting the password
+        var pass = crypto.createCipher('aes-128-cbc', 'password');
+        var encPassword = pass.update(pwd, 'utf8', 'hex')
+        encPassword += pass.final('hex');
+
+    //sanitization of the username
+    username = username.replace(";","");
+    username = username.replace("!","");
+    username = username.replace("","");
+    username = username.replace("#","");
+    username = username.replace("$","");
+    username = username.replace("%","");
+    username = username.replace("^","");
+    username = username.replace("&","");
+    username = username.replace("*","");
+    username = username.replace("(","");
+    username = username.replace(")","");
+    username = username.replace("@","");
+    username = username.replace("=","");
+    username = username.replace("{","");
+    username = username.replace("}","");
+    username = username.replace(">","");
+    username = username.replace("<","");
+    username = username.replace(":","");
+    });
+    //ecrypting password
+    socket.emit('user-details-client', username, encPassword);
+    //play again function, includes resetting the username and password
+    socket.on('playingAgain', function(user,pass){
+        username = user;
+        password = pass;
+        console.log(username + " " + password);
+    });
+    //updating the current score of the username in the table
+    socket.on('score', function(score,username){
+        console.log(score);
+    //for setting the score
+    var setupScore = "UPDATE players SET Current_Score = " + score + " WHERE Username = '" + username + "';"; 
+    connection.query(setupScore, function (err, result) {
+        if (err) throw err;
+        console.log(result + " done");
+    });
+
+    //for getting highest score
+    var setupHighest = "SELECT Highest_Score from players WHERE Username = '" + username + "';";
+    connection.query(setupHighest, function(err, result){ 
+        if (err) throw err;
+        //If it is the highest score yet, then:
+        if(score > result[0].Highest_Score){
+            //first, we send a message to the player
+            socket.emit('highest',score, "Congratulations, this is your highest yet!");
+            //then, We update the table with the new score being the highest scre
+            var newscore = "UPDATE players SET Highest_Score = " + score + " WHERE Username = '" + username + "';"; 
+            connection.query(newscore, function(err,response){
+               if (err) throw err;
+               console.log(" updated score" + response);
+            });
+        }
+        //otherwise, if it is not the highest score of the user then
+        else {
+            socket.emit('highest',result[0].Highest_Score, " ");
+        }
+
+    })})})

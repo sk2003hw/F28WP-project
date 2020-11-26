@@ -7,6 +7,7 @@
     "connect": "^3.7.0",
     "connect-assetmanager": "0.0.24",
     "connect-assetmanager-handlers": "0.0.17",
+    "expres": "0.0.5",
     "express": "^4.17.1",
     "jade": "^0.16.2",
     "jquery": "^3.5.1",
@@ -32,5 +33,6 @@
   "bugs": {
     "url": "https://github.com/F28WP-Dubai-nibbleByte/F28WP-project/issues"
   },
-  "homepage": "https://github.com/F28WP-Dubai-nibbleByte/F28WP-project#readme"
+  "homepage": "https://github.com/F28WP-Dubai-nibbleByte/F28WP-project#readme",
+  "devDependencies": {}
 }

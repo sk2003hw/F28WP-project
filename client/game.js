@@ -581,9 +581,10 @@ var racer2 = $('#racer2');                               //Selector for racer-3
             gameEndSound.currentTime = 0;
             gameEndSound.play();
             sound = false;
+        }   
         }
-        playArea.replace("scoreboard.html")    
-    
-        }
-    }
-)
+    class Scores{
+        constructor(name, score) {
+        this.name = name;
+        this.score = score;
+    }}})
