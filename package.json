@@ -7,7 +7,6 @@
     "connect": "^3.7.0",
     "connect-assetmanager": "0.0.24",
     "connect-assetmanager-handlers": "0.0.17",
-    "expres": "0.0.5",
     "express": "^4.17.1",
     "jade": "^0.16.2",
     "jquery": "^3.5.1",
@@ -18,14 +17,15 @@
     "mysql": "^2.18.1",
     "redis-url": "0.0.1",
     "request": "^2.2.0",
+    "require": "^2.4.20",
     "socket.io": "^3.0.3",
     "underscore": "^1.2.1"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
+    "dev":"nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/F28WP-Dubai-nibbleByte/F28WP-project.git"
@@ -36,5 +36,7 @@
     "url": "https://github.com/F28WP-Dubai-nibbleByte/F28WP-project/issues"
   },
   "homepage": "https://github.com/F28WP-Dubai-nibbleByte/F28WP-project#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
 }
