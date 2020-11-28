@@ -27,7 +27,7 @@ function dbFunc() {
     }
 
      //JUMPING TO GAME.HTML
-     location.replace('game.html');
+     location.replace('/F28WP-project/client/game.html');
 
     console.log("Starting to connect to database"); 
 
