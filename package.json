@@ -2,9 +2,6 @@
   "name": "f28wp-nibblebyte",
   "version": "1.0.0",
   "description": "server side",
-  "engines": {
-   "node": "12.11.1"
-   }
   "main": "app.js",
   "dependencies": {
     "connect": "^3.7.0",
